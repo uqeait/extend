@@ -3,7 +3,7 @@
   margin-top: 6rem
 }
 .top-6{
-  top: 6rem;
+  top: 6rem !important;
 }
 .alert:not(.pattern-library-shim){
 color: var(--bs-alert-color) !important;
@@ -13,8 +13,62 @@ margin-bottom: var(--bs-alert-margin-bottom) !important;
 .xmodule_display.xmodule_HtmlBlock .table th{
  background: var(--bs-table-bg) !important;
 }
+.xmodule_display.xmodule_HtmlBlock i, i{
+  font-style: unset !important;
+}
 div.accordion h2{
   margin: 0px !important;
+}
+#bttBtn {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  z-index: 1020;
+  font-size: 1.3rem;  
+  cursor: pointer;
+}
+#bttBtn.btn, #bttBtn.btn:hover{
+  box-shadow: none !important;
+  }
+#reopenCompletionAlerts {
+      position: fixed;
+      bottom: 0px;
+      right: 67px;
+      z-index: 1001;
+      font-size: 1.1rem;
+      cursor: pointer;
+}  
+#reopenCompletionAlerts.btn, #reopenCompletionAlerts.btn:hover{
+  box-shadow: none !important;
+}
+.copyBadge{
+  cursor: pointer;
+}  
+a.btn-uq, a.btn-primary, a.btn-secondary, a.btn-success, a.btn-danger, a.btn-dark {
+  color: #fff !important;
+}
+a.btn-uq:hover, a.btn-primary:hover, a.btn-secondary:hover, a.btn-success:hover, a.btn-danger:hover, a.btn-dark:hover {
+  color: #fff !important;
+}
+a.btn-light, a.btn-warning, a.info {
+  color: #000 !important;
+}
+a.btn-light:hover, a.btn-warning:hover, a.info:hover {
+  color: #000 !important;
+}
+div.preview-menu div a.btn {
+  color: #fff !important;
+}
+body, h1, h2, h3, h4, h5, h6, p, label{
+  text-align: unset !important;
+  font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+h2.text-bg-uq, h4.text-bg-info, h2.text-bg-dark{
+  margin-bottom: 1.5rem !important;
+}
+div.alert p, div.alert h1, div.alert h2, div.alert h3, div.alert h4, div.alert h5, div.alert h6{
+  color: inherit !important;
 }
 .tooltip::after{
 content: none !important;
