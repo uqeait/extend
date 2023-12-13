@@ -473,7 +473,7 @@
         </script>
         <!--On page load run functions + build placeholder-->
         <script type="text/javascript">
-            window.addEventListener('DOMContentLoaded', function(){
+            window.addEventListener('load', function(){
                 $('ul.nav').on('click', function(){
                     var lastTabClicked = $('button.active').attr('id')
                     localStorage.setItem("lastTabClicked", lastTabClicked);
