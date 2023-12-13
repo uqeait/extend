@@ -1,0 +1,210 @@
+/*CSS file to adjust for clashes between vendor and theme CSS and Bootstrap CSS*/
+#marginMakingDiv{
+  margin-top: 6rem
+}
+.top-6{
+  top: 6rem;
+}
+.alert:not(.pattern-library-shim){
+color: var(--bs-alert-color) !important;
+margin-bottom: var(--bs-alert-margin-bottom) !important;  
+}
+
+.xmodule_display.xmodule_HtmlBlock .table th{
+ background: var(--bs-table-bg) !important;
+}
+div.accordion h2{
+  margin: 0px !important;
+}
+.tooltip::after{
+content: none !important;
+}
+.tooltip{
+border-style: none !important;
+}
+.uq-icon{
+  background-size: 30px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 45px;
+  margin-left: 5px; 
+}
+.purple-banner{
+  background-color: #51247a;
+  padding: 10px 5px;
+}
+.purple-banner span{
+  color: #fff;
+}
+.grey-banner{
+  background-color: #f8f8ff;
+  padding: 10px 5px; 
+}
+.grey-banner span{
+  color: #000
+}
+.blue-banner{
+  background-color:#3C7B9A;
+  padding: 10px 5px; 
+}
+.blue-banner span{
+  color: #fff;
+}
+.icon-jigsaw-white{
+  background-image: url('/uqlearnx/img/activities-white.png');
+}
+.icon-jigsaw-alt-white{
+  background-image: url('/uqlearnx/img/white_activity.png');
+}
+.icon-anatomy-white{
+  background-image: url('/uqlearnx/img/white_anatomy.png');
+}
+.icon-epi-white{
+  background-image: url('/uqlearnx/img/white_epi.png');
+}
+.icon-histology-white{
+  background-image: url('/uqlearnx/img/white_histology.png');
+}
+.icon-pathophysiology-white{
+  background-image: url('/uqlearnx/img/white_pathophysiology.png');
+}
+.icon-report-white{
+background-image: url('/uqlearnx/img/white_report.png');
+}
+.icon-report-white{
+background-image: url('/uqlearnx/img/white_report.png');
+}
+.icon-checklist-quiz-white{
+  background-image: url('/uqlearnx/img/quiz-white.png');
+}
+.icon-magnifying-glass-white{
+  background-image: url('/uqlearnx/img/explore-white.png');
+}
+.icon-book-white{
+  background-image: url('/uqlearnx/img/book-white.png');
+}   
+.icon-discuss-white{
+  background-image: url('/uqlearnx/img/discuss-white.png');
+} 
+.icon-timer-white{
+  background-image: url('/uqlearnx/img/timer-white.png');
+} 
+.icon-video-white{
+  background-image: url('/uqlearnx/img/video-white.png');
+}
+.icon-thought-white{
+  background-image: url('/uqlearnx/img/think-white.png')
+}
+.icon-pencil-white{
+  background-image: url('/uqlearnx/img/notes-white.png')
+}
+.icon-link-white{
+  background-image: url('/uqlearnx/img/link-white.png')
+}
+.icon-group-white{
+  background-image: url('/uqlearnx/img/group-white.png')
+}
+.icon-podcast-white{
+  background-image: url('/uqlearnx/img/podcast-white.png')
+}
+.icon-arrow-circle-white{
+  background-image: url('/uqlearnx/img/future-white.png')
+}
+.icon-cogs-white{
+  background-image: url('/uqlearnx/img/cogs-white.png')
+}
+.icon-lightbulb-white{
+  background-image: url('/uqlearnx/img/example-white.png');
+  background-size: 25px;
+}
+.icon-list-white{
+  background-image: url('/uqlearnx/img/summary-white.png')
+}
+.icon-alert-circle-white{
+  background-image: url('/uqlearnx/img/alert-white.png')
+}
+.icon-alert-triangle-white{
+  background-image: url('/uqlearnx/img/important-white.png')
+}
+.icon-globe-white{
+  background-image: url('/uqlearnx/img/world-white.png')
+}
+.icon-jigsaw-black{
+  background-image: url('/uqlearnx/img/activities-black.png');
+}
+.icon-jigsaw-alt-black{
+  background-image: url('/uqlearnx/img/activity_2_black.png');
+}
+.icon-anatomy-black{
+  background-image: url('/uqlearnx/img/anatomy_black.png');
+}
+.icon-epi-black{
+  background-image: url('/uqlearnx/img/epi_black.png');
+}
+.icon-histology-black{
+  background-image: url('/uqlearnx/img/histology_black.png');
+}
+.icon-pathophysiology-black{
+  background-image: url('/uqlearnx/img/pathophysiology_black.png');
+}
+.icon-report-black{
+  background-image: url('/uqlearnx/img/report_black.png');
+}
+.icon-checklist-quiz-black{
+  background-image: url('/uqlearnx/img/quiz-black.png');
+}
+.icon-magnifying-glass-black{
+  background-image: url('/uqlearnx/img/explore-black.png');
+}
+.icon-book-black{
+  background-image: url('/uqlearnx/img/book-black.png');
+}   
+.icon-discuss-black{
+  background-image: url('/uqlearnx/img/discuss-black.png');
+} 
+.icon-timer-black{
+  background-image: url('/uqlearnx/img/timer-black.png');
+} 
+.icon-video-black{
+  background-image: url('/uqlearnx/img/video-black.png');
+}
+.icon-thought-black{
+  background-image: url('/uqlearnx/img/think-black.png')
+}
+.icon-pencil-black{
+  background-image: url('/uqlearnx/img/notes-black.png')
+}
+.icon-link-black{
+  background-image: url('/uqlearnx/img/link-black.png')
+}
+.icon-group-black{
+  background-image: url('/uqlearnx/img/group-black.png')
+}
+.icon-podcast-black{
+  background-image: url('/uqlearnx/img/podcast-black.png')
+}
+.icon-arrow-circle-black{
+  background-image: url('/uqlearnx/img/future-black.png')
+}
+.icon-cogs-black{
+  background-image: url('/uqlearnx/img/cogs-black.png')
+}
+.icon-lightbulb-black{
+  background-image: url('/uqlearnx/img/example-black.png');
+  background-size: 25px;
+}
+.icon-list-black{
+  background-image: url('/uqlearnx/img/summary-black.png')
+}
+.icon-alert-circle-black{
+  background-image: url('/uqlearnx/img/alert-black.png')
+}
+.icon-alert-triangle-black{
+  background-image: url('/uqlearnx/img/important-black.png')
+}
+.icon-globe-black{
+  background-image: url('/uqlearnx/img/world-black.png')
+}
+.lower-alpha {
+  list-style-type: lower-alpha;
+}
