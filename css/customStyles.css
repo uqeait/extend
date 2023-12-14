@@ -1,5 +1,5 @@
 /*CSS file to adjust for clashes between vendor and theme CSS and Bootstrap CSS*/
-#marginMakingDiv{
+.marginMakingDiv{
   margin-top: 6rem
 }
 .top-6{

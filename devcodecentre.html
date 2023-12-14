@@ -746,7 +746,7 @@
     </div>
     <!-- End nav -->
     <!-- Margin to ensure menu is always visible -->
-    <div id="marginMakingDiv"></div>
+    <div class="marginMakingDiv"></div>
     <!-- Begin body of site -->
     <div class="m-3">
         <div class="tab-content mt-3">
@@ -1073,60 +1073,6 @@
                                 <h5 class="font-weight-bold mt-3">Heading - Max 75 Characters <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Optional heading above content. Max 75 characters" class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
                                 <textarea onchange="generateImgTextCode()" id="headingText" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Optional heading above content. Max 75 characters"></textarea>            
                                 <hr>
-                                <h5 class="font-weight-bold mt-3">Heading Icon <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Include an icon if it relates to a specific structured learning experience." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
-                                <div class="row bg-uq p-4 rounded-top">
-                                    <div class="col-lg d-flex justify-content-around">
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="noI" type="radio" value="noI" checked="">
-                                            <label class="form-check-label text-white" for="noI">No icon</label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Clinical and Practical Skills Workshops">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="psw" type="radio" value="psw">
-                                            <label data-bs-tooltip="" class="form-check-label" for="psw"><span class="uq-icon icon-psw-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Clinical Plenary">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="clinical-plenary" type="radio" value="clinical-plenary">
-                                            <label class="form-check-label" for="clinical-plenary"><span class="uq-icon icon-clinical-plenary-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()"  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Clinical and Professional Learning">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="cpl" type="radio" value="cpl">
-                                            <label class="form-check-label" for="cpl"><span class="uq-icon icon-cpl-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Immersion">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="immersion" type="radio" value="immersion">
-                                            <label class="form-check-label" for="immersion"><span class="uq-icon icon-immersion-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Lectorial">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="lectorial" type="radio" value="lectorial">
-                                            <label class="form-check-label" for="lectorial"><span class="uq-icon icon-lectorial-white bg-uq p-3"></span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row bg-uq p-4 rounded-bottom">
-                                    <div class="col-lg d-flex justify-content-around">
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Masterclass">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="masterclass" type="radio" value="masterclass">
-                                            <label class="form-check-label" for="masterclass"><span class="uq-icon icon-masterclass-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Practical">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="practical" type="radio" value="practical">
-                                            <label class="form-check-label" for="practical"><span class="uq-icon icon-practical-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Symposium">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="symposium" type="radio" value="symposium">
-                                            <label class="form-check-label" for="symposium"><span class="uq-icon icon-symposium-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Team Based Learning">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="tbl" type="radio" value="tbl">
-                                            <label class="form-check-label" for="tbl"><span class="uq-icon icon-tbl-white bg-uq p-3"></span></label>
-                                        </div>
-                                        <div class="form-check form-check-inline" id="headingIcon" onchange="generateImgTextCode()" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Workshop">
-                                            <input title="Heading Icon Choice" class="form-check-input" name="headingIcon" id="workshop" type="radio" value="workshop">
-                                            <label class="form-check-label" for="workshop"><span class="uq-icon icon-workshop-white bg-uq p-3"></span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
                                 <h5 class="font-weight-bold mt-3">Heading size <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Choose the size of your heading." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
                                 <div class="form-check form-check-inline" id="headSize" onchange="generateImgTextCode()">
                                     <input class="form-check-input" name="headSize" id="headSizeNone" type="radio" value="img-noH" checked>
@@ -1149,7 +1095,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="sticky-top top-6rem">
+                        <div class="sticky-top top-6">
                             <div id="imgStep10">
                             <h5 class="font-weight-bold mt-3">Preview<span class="hideableinstruct text-success small" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="A preview of your element will appear below as you update the fields on the left.">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
                             <div id="previewImgFS" class="bg-white">
@@ -2456,7 +2402,7 @@
 </div>
 <!-- <button id="closeAlertsBtn" class="position-absolute top-0 end-0 btn btn-success p-1 px-2 rounded mx-2 fs-4" style="margin-top: 6rem; z-index: 1020" onclick="closeAlerts()" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Hide/show explanatory alerts on the table and accordion pages"><i class="fa-solid fa-eye"></i></button>-->
 <button title="Back to top button" id="bttBtn" class="btn btn-dark p-1 px-2 rounded mx-2 my-4 fs-4" onclick="javascript:document.body.scrollTop = 0;document.documentElement.scrollTop = 0;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
-<div class="top-6"></div>
+<div class="marginMakingDiv"></div>
 <div class="bg-uq fixed-bottom">
     <nav class="navbar mx-3 float-end">
         <ul class="nav nav-pills">
