@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>UQ Extend Code Centre</title>
-        <link rel="icon" href="https://uqeait.github.io/uqextend/img/UQfavicon.png" type="image/gif">
+        <link rel="icon" type="image/x-icon" href="https://uqeait.github.io/uqextend/img/UQfavicon.png" >
         
         <!-- Google fonts to match UQ Extend look and feel -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +19,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" type="text/css" href="/css/customStyles.css" />
-        <link rel="stylesheet" type="text/css" href="/fontawesome-v6.1.1-free/css/all.css" />
-        <link rel="stylesheet" type="text/css" href="/bootstrap-5.2.1-dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/css/customStyles.css" />
+        <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/fontawesome-v6.1.1-free/css/all.css" />
+        <link rel="stylesheet" type="text/css" href="https://uqeait.github.io/uqextend/bootstrap-5.2.1-dist/css/bootstrap.css" />
             
         <!-- Custom JS for copying code + generating elements -->
-        <script src="/js/copyNextDiv.js" crossorigin="anonymous"></script>
-        <script src="/js/generateElementCode.js" crossorigin="anonymous"></script>
-        <script src="/js/fullScreenToggle.js" crossorigin="anonymous"></script>
+        <script src="https://uqeait.github.io/uqextend/js/copyNextDiv.js" crossorigin="anonymous"></script>
+        <script src="https://uqeait.github.io/uqextend/js/generateElementCode.js" crossorigin="anonymous"></script>
+        <script src="https://uqeait.github.io/uqextend/js/fullScreenToggle.js" crossorigin="anonymous"></script>
 
        <!--<script src="https://uqeait.github.io/bootstrap-5.2.1-dist/js/bootstrap.bundle.js" crossorigin="anonymous"></script>
         <script src="https://uqeait.github.io/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>-->
@@ -462,18 +462,18 @@
             var vidResizedHead = "";
             //Placeholder variables so there is a placeholder preview for the user to see initially
             var textPlaceholder = '<p class="mb-0">This is placeholder text that will update once you input your own text</p>\n';
-            var imgPlaceholder = '<figure>\n<img class="img-fluid d-block mx-auto" alt="This is alt text" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" />\n<figcaption class="text-center mt-2">This is the placeholder image caption</figcaption>\n</figure>\n';
-            var imgPlaceholderLink = 'https://uqeait.github.io/extend/img/PLACEHOLDER.png';
+            var imgPlaceholder = '<figure>\n<img class="img-fluid d-block mx-auto" alt="This is alt text" src="https://uqeait.github.io/uqextend/img/PLACEHOLDER.png" />\n<figcaption class="text-center mt-2">This is the placeholder image caption</figcaption>\n</figure>\n';
+            var imgPlaceholderLink = 'https://uqeait.github.io/uqextend/img/PLACEHOLDER.png';
             var placeholderCode = rowOpen + colOpen + textPlaceholder + divClose + colOpen + imgPlaceholder + rowClose;
             var vidPlaceholder = '<iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             var vidPlaceholderLink = 'https://www.youtube.com/embed/NpEaa2P7qZI';
             var vidPlaceholderCode = rowOpen + colOpen + textPlaceholder + divClose + colOpen + respVidOpen + vidPlaceholder + rowClose;
-            var btnPlaceholderLink = 'https://learnx.uq.edu.au/dashboard';
+            var btnPlaceholderLink = 'https://extend.uq.edu.au/dashboard';
             var tooltipPlaceholderText = 'This is a tooltip to help people better understand a term, or provide a reminder of what an acronym stands for.';
         </script>
         <!--On page load run functions + build placeholder-->
         <script type="text/javascript">
-            window.addEventListener('DOMContentLoaded', function(){
+            window.addEventListener('load', function(){
                 $('ul.nav').on('click', function(){
                     var lastTabClicked = $('button.active').attr('id')
                     localStorage.setItem("lastTabClicked", lastTabClicked);
@@ -709,7 +709,7 @@
         <ul class="nav nav-pills" id="myTab">
             <li>
             <a class="navbar-brand" href="#home">
-                <img src="/img/uq-logo-badge-white.png" alt="Bootstrap" width="100%" height="auto">
+                <img src="https://uqeait.github.io/uqextend/img/uq-logo-badge-white.png" alt="Bootstrap" width="100%" height="auto">
             </a></li>
             <li class="nav-item">
                 <button id="homeBtn" class="nav-link active" href="#home" data-bs-toggle="tab">Home</button>
@@ -791,175 +791,6 @@
                             </div>
                         </div>
                     </div>
-                                        <!-- img snippets currently not in use -->
-            <!--<div class="tab-pane fade" id="imgRight" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Text left/Image right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                        <div class="col-lg">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Text left/Video right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                        <div class="col-lg">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="imgRight33" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Image right 33%</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Video right 33%</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="imgLeft33" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Image left 33%</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Video left 33%</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="imgLeft" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Image left/Text right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Video left/Text right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <p>This is placeholder text</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="imgFloatRight" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Image float right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="col-lg-6 float-lg-end m-2">
-                                <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                            </div>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Video float right</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="col-lg-6 float-lg-end m-2">
-                                <div class="ratio ratio-16x9">
-                                    <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                            <p>This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats. This is placeholder text to show this image floats.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="twoImgs" role="tabpanel">
-                <h3 class="text-bg-uq p-2">Two images side by side</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                        <div class="col-lg">
-                            <img class="img-fluid" src="https://uqeait.github.io/extend/img/PLACEHOLDER.png" alt="" />
-                        </div>
-                    </div>
-                </div>
-                <h3 class="text-bg-uq p-2 mt-3">Two videos side by side</h3>
-                <div class="copythis">
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
             <!-- Tab page - Headings -->
             <div class="tab-pane fade" id="headings" role="tabpanel">
                 <div class="row gap-2">
