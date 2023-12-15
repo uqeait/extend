@@ -6,7 +6,6 @@ function generateImgTextCode() {
     var imgWidth = $('input[name="imageWidth"]:checked').val();
     var imgVert = $('input[name="alignImgVert"]:checked').val();
     var txtVert = $('input[name="alignTextVert"]:checked').val();
-    var headingIcon = $('input[name="headingIcon"]:checked').val();
     var imgBorder = $('input[name="imgBorder"]:checked').val();
     var iconCode = '<span class="uq-icon icon-' + headingIcon + '-white"></span> ';
     function toggleImgOnlyOn(){
@@ -34,12 +33,6 @@ function generateImgTextCode() {
         $('#secondImageOptions').addClass('d-none');
         },300)
     }        
-    if(headingIcon != 'noI'){
-        iconCode = iconCode
-    }
-    else{
-        iconCode = '';
-    }
     //var tinyText = tinymce.activeEditor.getContent() + '\n';
     if(tinymce.get("tinyMCEimg").getContent() !==''){
         tinyTextimg = tinymce.get("tinyMCEimg").getContent() + '\n';
@@ -118,7 +111,7 @@ function generateImgTextCode() {
         //Resizing the heading text
         var sizes = {
             "img-noH": "",
-            "img-h2": "<h2 class=\"text-bg-uq p-2\">" + iconCode + headingText + "</h2>\n",
+            "img-h2": "<h2 class=\"text-bg-uq p-2\">" + headingText + "</h2>\n",
             "img-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + headingText + "</h4>\n"
         }
         resizedHead = sizes[headSize];
@@ -213,9 +206,6 @@ function generateVidTextCode() {
     //Retrive values and text from the user's input
     var vidPosition = $('input[name="videoPosition"]:checked').val();
     var vidWidth = $('input[name="videoWidth"]:checked').val();
-    var headingIconVid = $('input[name="headingIconVid"]:checked').val();
-    var iconCodeVid = '<span class="uq-icon icon-' + headingIconVid + '-white"></span> ';
-    //var copyButtonVid = document.getElementById('copyCodeBtn');
     // Get references to the textarea and button elements
     
     if(tinymce.get("tinyMCEvid").getContent() !==''){
@@ -223,12 +213,6 @@ function generateVidTextCode() {
     }
     else{
         tinyTextvid = textPlaceholder
-    }
-    if(headingIconVid != 'noI'){
-        iconCodeVid = iconCodeVid
-    }
-    else{
-        iconCodeVid = '';
     }
     var vidHeadingText = $('#vidHeadingText').val();
     var vidHeadSize = $('input[name="vidHeadSize"]:checked').val();
@@ -308,7 +292,6 @@ function generateVidTextCode() {
         var vidCode2 = vidPlaceholder;
     }
     
-    
     if ($('#vidTitleText').val() !== ''){
         var vidTitleText =  "<h4 class=\"text-bg-info p-2 bg-opacity-25 m-0 text-center\">" + $('#vidTitleText').val() + "</h4>";
     }
@@ -326,7 +309,7 @@ function generateVidTextCode() {
         //Resizing the heading text
         var vidSizes = {
             "vid-noH": "",
-            "vid-h2": "<h2 class=\"text-bg-uq p-2\">" + iconCodeVid + vidHeadingText + "</h2>\n",
+            "vid-h2": "<h2 class=\"text-bg-uq p-2\">" + vidHeadingText + "</h2>\n",
             "vid-h2-w": "<h2 class=\"text-bg-dark p-2\"><span class=\"fa-brands fa-youtube\"></span> Watch" + vidHeadingText + "</h2>\n",
             "vid-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + vidHeadingText + "</h4>\n"
         }
