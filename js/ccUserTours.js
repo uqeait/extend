@@ -7,6 +7,17 @@ const tableBuilderTourCompletionKey = 'tableBuilderTourCompleted';
 const accBuilderTourCompletionKey = 'accBuilderTourCompleted';
 const readmoreBuilderTourCompletionKey = 'readmoreBuilderTourCompleted';
 window.addEventListener('load',function(){
+  if (window.location.href.includes('devcodecentre')) {
+    localStorage.setItem(imgBuilderTourCompletionKey, true);
+    localStorage.setItem(vidBuilderTourCompletionKey, true);
+    localStorage.setItem(btnBuilderTourCompletionKey, true);
+    localStorage.setItem(alertBuilderTourCompletionKey, true);
+    localStorage.setItem(tooltipBuilderTourCompletionKey, true);
+    localStorage.setItem(tableBuilderTourCompletionKey, true);
+    localStorage.setItem(accBuilderTourCompletionKey, true);
+    localStorage.setItem(readmoreBuilderTourCompletionKey, true);
+}
+
 //Read more toggle needs this function to activate its collapse and open function, plus change the icon.
 $('.demoToggle').click(function(){
     $('i', this).toggleClass('fa-angle-down fa-angle-up');

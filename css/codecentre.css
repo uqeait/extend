@@ -1,0 +1,231 @@
+/*General CSS for the Code Centre*/
+body, h1, h2, h3, h4, h5, h6{
+    font-family: 'Open Sans', sans-serif !important;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    margin-top: 0;
+}
+div.form-check-inline{
+    line-height: 1.5rem;
+    display: inline-flex;
+}
+label{ 
+    line-height: 1.5rem;
+    margin-left: 5px;
+}
+input[type='radio'] { 
+    line-height: 1.5rem;
+    margin: auto;
+}
+#iconCol div.row div.col-lg span.htmlToCopy span{
+    padding: 10px 18px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-position-x: center;
+    cursor: pointer;
+}
+.inline-group {
+    max-width: 9rem;
+    padding: .5rem;
+}
+.inline-group .form-control {
+    text-align: right;
+}
+.form-control[type="number"]::-webkit-inner-spin-button, .form-control[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.swal2-styled.swal2-confirm{
+    background-color: #51247a !important;
+}
+li button.nav-link{
+    color: #fff !important;
+}
+li.nav-item:hover{
+    background: rgba(150, 42, 139, 1) !important;
+    border-radius: 5px;
+}
+li button.nav-link.active{
+    background: rgba(150, 42, 139, 1) !important;
+    color: white !important;
+}
+ul.nav li{
+    margin: auto;
+}
+.mw-25 {
+    max-width: 25% !important;
+}
+.mw-50 {
+    max-width: 50% !important;
+}
+.mw-75 {
+    max-width: 75% !important;
+}
+
+/*Shepherd User Tours CSS*/
+:not-allowed
+            .shepherd-button{
+                margin-right:.5rem;
+            }
+            .shepherd-footer{
+                border-bottom-left-radius:5px;
+                border-bottom-right-radius:5px;
+                display:flex;
+                justify-content:space-evenly;
+                padding:0 .75rem .75rem
+            }
+            .shepherd-footer .shepherd-button:last-child{
+                margin-right:0
+            }
+            .shepherd-cancel-icon{
+                background:transparent;
+                border:none;
+                color:hsla(0,0%,50%,.75);
+                cursor:pointer;
+                font-size:2em;
+                font-weight:400;
+                margin:0;
+                padding:0;
+                transition:color .5s ease
+            }
+            .shepherd-cancel-icon:hover{
+                color:rgba(0,0,0,.75)
+            }
+            .shepherd-has-title .shepherd-content .shepherd-cancel-icon{
+                color:hsla(0,0%,50%,.75)
+            }
+            .shepherd-has-title .shepherd-content .shepherd-cancel-icon:hover{
+                color:rgba(0,0,0,.75)
+            }
+            .shepherd-title{
+                color:rgba(0,0,0,.75);
+                display:flex;
+                flex:1 0 auto;
+                font-size:1rem;
+                font-weight:400;
+                margin:0 !important;
+                padding:0 !important;
+                padding-bottom: 0.3rem !important;
+                text-align: center !important;
+                display: block;
+                color: white;
+                font-size: 1.25rem !important;
+            }
+            .shepherd-header{
+                align-items:center;
+                display:flex;
+                justify-content:flex-end;
+                line-height:2em;
+                padding:.3rem !important;
+                background: #000 !important;
+            }
+            .shepherd-has-title .shepherd-content .shepherd-header{
+                background:#e6e6e6;padding:1em
+            }
+            .shepherd-text{
+                color:rgba(0,0,0,.75);
+                font-size:1rem;
+                line-height:1.3em;
+                padding:.75em
+            }
+            .shepherd-text p{
+                margin-top:0
+            }
+            .shepherd-text p:last-child{
+                margin-bottom:0
+            }
+            .shepherd-content{
+                border-radius:5px;
+                outline:none;
+                padding:0
+            }
+            .shepherd-element{
+                background:#fff;
+                border-radius:5px;
+                border: 3px solid black;
+                box-shadow:0 1px 4px rgba(0,0,0,.2);
+                max-width:400px;
+                opacity:0;
+                outline:none;
+                transition:opacity .3s,visibility .3s;
+                visibility:hidden;
+                width:100%;
+                z-index:9999
+            }
+            .shepherd-enabled.shepherd-element{
+                opacity:1;
+                visibility:visible;
+            }
+            .shepherd-element[data-popper-reference-hidden]:not(.shepherd-centered){
+                opacity:0;
+                pointer-events:none;
+                visibility:hidden
+            }
+            .shepherd-element,.shepherd-element *,.shepherd-element :after,.shepherd-element :before{
+                box-sizing:border-box
+            }
+            .shepherd-arrow,.shepherd-arrow:before{
+                height:16px;
+                position:absolute;
+                width:16px;
+                z-index:-1;
+            }
+            
+            .shepherd-arrow:before{
+                background:#fff;
+                /*content:"";*/
+                transform:rotate(45deg);
+            }
+            .shepherd-element[data-popper-placement^=top]>.shepherd-arrow{
+                bottom:-8px
+            }
+            .shepherd-element[data-popper-placement^=bottom]>.shepherd-arrow{
+                top:-8px
+            }
+            .shepherd-element[data-popper-placement^=left]>.shepherd-arrow{
+                right: -20px;
+                border-top: 16px solid transparent;
+                border-right: 0px solid transparent;
+                border-bottom: 16px solid transparent;
+                border-left: 20px solid black;
+            }
+            .shepherd-element[data-popper-placement^=right]>.shepherd-arrow{
+                left: -20px;
+                border-top: 16px solid transparent;
+                border-right: 20px solid black;
+                border-bottom: 16px solid transparent;
+                border-left: 0px solid transparent;
+            }
+            .shepherd-element.shepherd-centered>.shepherd-arrow{
+                opacity:0
+            }
+            .shepherd-element.shepherd-has-title[data-popper-placement^=bottom]>.shepherd-arrow:before{
+                background-color:#e6e6e6
+            }
+            .shepherd-target-click-disabled.shepherd-enabled.shepherd-target,.shepherd-target-click-disabled.shepherd-enabled.shepherd-target *{
+                pointer-events:none;
+            }
+            .shepherd-modal-overlay-container{
+                height:0;
+                left:0;
+                opacity:0;
+                overflow:hidden;
+                pointer-events:none;
+                position:fixed;
+                top:0;
+                transition:all .3s ease-out,height 0ms .3s,opacity .3s 0ms;
+                width:100vw;
+                z-index:9997
+            }
+            .shepherd-modal-overlay-container.shepherd-modal-is-visible{
+                height:100vh;
+                opacity:.5;
+                transform:translateZ(0);
+                transition:all .3s ease-out,height 0s 0s,opacity .3s 0s
+            }
+            .shepherd-modal-overlay-container.shepherd-modal-is-visible path{
+                pointer-events:all
+            }

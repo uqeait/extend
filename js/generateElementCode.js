@@ -7,7 +7,6 @@ function generateImgTextCode() {
     var imgVert = $('input[name="alignImgVert"]:checked').val();
     var txtVert = $('input[name="alignTextVert"]:checked').val();
     var imgBorder = $('input[name="imgBorder"]:checked').val();
-    var iconCode = '<span class="uq-icon icon-' + headingIcon + '-white"></span> ';
     function toggleImgOnlyOn(){
         $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').addClass('d-none');
             }
@@ -119,6 +118,31 @@ function generateImgTextCode() {
     else {
         resizedHead = "";
     } 
+    const altTextInput = document.getElementById('altText');
+    const copyCodeBtn = document.getElementById('imgCopyCodeBtn');
+
+    copyCodeBtn.addEventListener('click', handleCopyClick);
+
+    function handleCopyClick(event) {
+      if (!altTextInput.value) {
+        Swal.fire({
+          icon: 'info',
+          title: '<span class="fs-5 d-block mx-auto text-center">Accessibility info needed!</span>',
+          text: 'Please provide an alt text for the image to improve accessibility before copying the code.'
+        });
+        return;
+      }
+
+      // Replace this line with your existing copyCode() function to copy the generated code
+      copyCode(); // Pass the alt text as an argument
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Copied!',
+        text: 'The code has been copied to your clipboard.'
+      });
+    }
+
     //Changing code order depending on selections
     if(imgPosition == "left" && imgWidth=="50"){
         imgOnlyOff();
@@ -936,192 +960,106 @@ function makeTable(){
     var accHeadSize = $('input[name="accHeadSize"]:checked').val();
     var showHideFirst = $('input[name="accFirstOpen"]:checked').val();
     var drawerQuantity = $('#drawerNumber').val();
-    var drawer1Title = $('#acc1Btn').val();
-    var drawer2Title = $('#acc2Btn').val();
-    var drawer3Title = $('#acc3Btn').val();
-    var drawer4Title = $('#acc4Btn').val();
-    var drawer5Title = $('#acc5Btn').val();
-    var drawer6Title = $('#acc6Btn').val();
-    var drawer7Title = $('#acc7Btn').val();
-    var drawer8Title = $('#acc8Btn').val();
-    var drawer9Title = $('#acc9Btn').val();
-    var drawer10Title = $('#acc10Btn').val();
-    var content1Body = tinymce.get("acc1Content").getContent();
-    var content2Body = tinymce.get("acc2Content").getContent();
-    var content3Body = tinymce.get("acc3Content").getContent();
-    var content4Body = tinymce.get("acc4Content").getContent();
-    var content5Body = tinymce.get("acc5Content").getContent();
-    var content6Body = tinymce.get("acc6Content").getContent();
-    var content7Body = tinymce.get("acc7Content").getContent();
-    var content8Body = tinymce.get("acc8Content").getContent();
-    var content9Body = tinymce.get("acc9Content").getContent();
-    var content10Body = tinymce.get("acc10Content").getContent();
-    var accOpen = '<div class=\"accordion\" id=\"accordion' + accName + '">\n';
+    var drawerTitles = [];
+    for (let i = 1; i <= 10; i++) {
+        drawerTitles[i] = $(`#acc${i}Btn`).val();
+    }
+    var contentBodies = [];
+    for (let i = 1; i <= 10; i++) {
+        contentBodies[i] = tinymce.get(`acc${i}Content`).getContent();
+    }
+    function createAccDrawer(drawerNumber, drawerTitle, isCollapsed = true) {
+        const expanded = isCollapsed ? 'false' : 'true';
+        const collapsed = isCollapsed ? 'collapsed' : '';
+        return `<div class="accordion-item">
+            <h2 class="accordion-header" id="heading${drawerNumber}">
+                <button class="accordion-button ${collapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${drawerNumber}" aria-expanded="${expanded}" aria-controls="collapse${drawerNumber}">
+                    ${drawerTitle}
+                </button>
+            </h2>`;
+    }
+    
+    function createContentOpen(drawerNumber, contentBody, showHideFirst = '', accName) {
+        const showHide = showHideFirst === 'true' && drawerNumber === 1 ? ' show' : '';
+        return `<div id="collapse${drawerNumber}" class="accordion-collapse collapse${showHide}" aria-labelledby="heading${drawerNumber}" data-bs-parent="#accordion${accName}">
+            <div class="accordion-body">${contentBody}</div>
+        </div>`;
+    }
+   
+    accCode += accClose;
+    var accOpen = `<div class="accordion" id="accordion${accName}">\n`;
     var accClose = '</div>';
-    var drawerClose = '</div>\n</div>\n';
-    var accDrawer1 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading1\"><button class=\"accordion-button\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse1\" aria-expanded=\"true\" aria-controls=\"collapse1\">' + drawer1Title + '</button></h2>\n';
-    var content1Open = '<div id=\"collapse1\" class=\"accordion-collapse collapse'+showHideFirst+'\" aria-labelledby=\"heading1\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content1Body + '</div>\n';
-    var accDrawer2 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading2\"><button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse2\" aria-expanded=\"false\" aria-controls=\"collapse2\">' + drawer2Title + '</button></h2>\n';
-    var content2Open = '<div id=\"collapse2\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading2\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content2Body + '</div>\n';
-    var accDrawer3 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading3\"><button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse3\" aria-expanded=\"false\" aria-controls=\"collapse3\">' + drawer3Title + '</button></h2>\n';
-    var content3Open = '<div id=\"collapse3\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading3\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content3Body + '</div>\n';
-    var accDrawer4 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading4\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse4\" aria-expanded=\"true\" aria-controls=\"collapse4\">' + drawer4Title + '</button>\n</h2>\n';
-    var content4Open = '<div id=\"collapse4\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading4\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content4Body + '</div>\n';
-    var accDrawer5 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading5\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse5\" aria-expanded=\"true\" aria-controls=\"collapse5\">' + drawer5Title + '</button>\n</h2>\n';
-    var content5Open = '<div id=\"collapse5\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading5\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content5Body + '</div>\n';
-    var accDrawer6 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading6\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse6\" aria-expanded=\"true\" aria-controls=\"collapse6\">' + drawer6Title + '</button>\n</h2>\n';
-    var content6Open = '<div id=\"collapse6\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading6\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content6Body + '</div>\n';
-    var accDrawer7 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading7\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse7\" aria-expanded=\"true\" aria-controls=\"collapse7\">' + drawer7Title + '</button>\n</h2>\n';
-    var content7Open = '<div id=\"collapse7\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading7\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content7Body + '</div>\n';
-    var accDrawer8 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading8\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse8\" aria-expanded=\"true\" aria-controls=\"collapse8\">' + drawer8Title + '</button>\n</h2>\n';
-    var content8Open = '<div id=\"collapse8\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading8\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content8Body + '</div>\n';
-    var accDrawer9 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading9\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse9\" aria-expanded=\"true\" aria-controls=\"collapse9\">' + drawer9Title + '</button>\n</h2>\n';
-    var content9Open = '<div id=\"collapse9\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading9\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content9Body + '</div>\n';
-    var accDrawer10 = '<div class=\"accordion-item\">\n<h2 class="accordion-header\" id=\"heading10\">\n<button class=\"accordion-button collapsed\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#collapse10\" aria-expanded=\"true\" aria-controls=\"collapse10\">' + drawer10Title + '</button>\n</h2>\n';
-    var content10Open = '<div id=\"collapse10\" class=\"accordion-collapse collapse\" aria-labelledby=\"heading10\" data-bs-parent=\"#accordion' + accName + '\">\n<div class=\"accordion-body\">' + content10Body + '</div>\n';
+    var drawerClose = '</div>\n';
+    
+    var accDrawers = [];
+    var contentOpens = [];
+    for (let i = 1; i <= 10; i++) {
+        accDrawers[i] = createAccDrawer(i, drawerTitles[i], i !== 1);
+        contentOpens[i] = createContentOpen(i, contentBodies[i], i === 1 ? ' show' : '', accName);
+    }
     $('#accHeadingText').on('keyup', function() {
-        // Check if the textarea contains text
-        if ($(this).val().trim() !== '') {
-          // Set the radio button with value 'h2' to checked
-          $('input[type="radio"][value="acc-h2"]').prop('checked', true);
-        }
-         else {
-          // Set the radio button with value 'noH' to checked
-          $('input[type="radio"][value="acc-noH"]').prop('checked', true);
-        }
-      });
-    if(accHeadSize !== "acc-noH"){
-        //Resizing the heading text
-        var accHeadSizes = {
-            "acc-noH": "",
-            "acc-h2": "<h2 class=\"text-bg-uq p-2\">" + accHeadingText + "</h2>\n",
-            "acc-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + accHeadingText + "</h4>\n"
-        }
-        accResizedHead = accHeadSizes[accHeadSize];
+        const value = $(this).val().trim() !== '' ? 'acc-h2' : 'acc-noH';
+        $('input[type="radio"][value="' + value + '"]').prop('checked', true);
+    });
+     // Generate placeholders for accordion drawers 1, 2, and 3
+     for (let i = 1; i <= 3; i++) {
+        accDrawers[i] = createAccDrawer(i, drawerTitles[i], showHideFirst === 'true' && i === 1);
+        contentOpens[i] = createContentOpen(i, contentBodies[i], showHideFirst === 'true' && i === 1, accName);
     }
-    else {
-        accResizedHead = "";
+    
+    // Generate the full accordion code
+    var accCode = accOpen;
+    for (let i = 1; i <= 3; i++) {
+        accCode += accDrawers[i] + contentOpens[i] + drawerClose;
     }
-    var plusDrawer4 = accDrawer4 + content4Open + drawerClose;
-    var plusDrawer5 = plusDrawer4 + accDrawer5 + content5Open + drawerClose;
-    var plusDrawer6 = plusDrawer5 + accDrawer6 + content6Open + drawerClose;
-    var plusDrawer7 = plusDrawer6 + accDrawer7 + content7Open + drawerClose;
-    var plusDrawer8 = plusDrawer7 + accDrawer8 + content8Open + drawerClose;
-    var plusDrawer9 = plusDrawer8 + accDrawer9 + content9Open + drawerClose;
-    var plusDrawer10 = plusDrawer9 + accDrawer10 + content10Open + drawerClose;
-    var accCode = accOpen + accDrawer1 + content1Open + drawerClose + accDrawer2 + content2Open + drawerClose + accDrawer3 + content3Open + drawerClose;
-    switch(drawerQuantity){
-        case "3":
-            $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').addClass('d-none');
-            }, 100)
-            accCode += accClose;
-            break;
-        case "4":
-            $('#drawer4').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4').addClass('show')
-            }, 100)
-            $('#drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').addClass('d-none');
-            }, 100)
-            accCode += plusDrawer4 += accClose;
-            break;    
-        case "5":
-            $('#drawer4, #drawer5').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5').addClass('show')
-            }, 100)
-            $('#drawer6, #drawer7, #drawer8, #drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer6, #drawer7, #drawer8, #drawer9, #drawer10').addClass('d-none');
-            }, 100)
-            accCode += plusDrawer5 += accClose;
-            break;  
-        case "6":
-            $('#drawer4, #drawer5, #drawer6').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6').addClass('show')
-            }, 100)
-            $('#drawer7, #drawer8, #drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer7, #drawer8, #drawer9, #drawer10').addClass('d-none')
-            }, 100)
-            accCode += plusDrawer6 += accClose;
-            break; 
-        case "7":
-            $('#drawer4, #drawer5, #drawer6, #drawer7').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6, #drawer7').addClass('show')
-            }, 100)
-            $('#drawer8, #drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer8, #drawer9, #drawer10').addClass('d-none')
-            }, 100)
-            accCode += plusDrawer7 += accClose;
-            break;
-        case "8":
-            $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8').addClass('show')
-            }, 100)
-            $('#drawer9, #drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer9, #drawer10').addClass('d-none')
-            }, 100)
-            accCode += plusDrawer8 += accClose;
-            break;  
-        case "9":
-            $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9').addClass('show')
-            }, 100)
-            $('#drawer10').removeClass('show');
-            setTimeout(function(){
-                $('#drawer10').addClass('d-none')
-            }, 100)
-            accCode += plusDrawer9 += accClose;
-            break;
-        case "10":
-            $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').removeClass('d-none');
-            setTimeout(function(){
-                $('#drawer4, #drawer5, #drawer6, #drawer7, #drawer8, #drawer9, #drawer10').addClass('show')
-            }, 100)
-            accCode += plusDrawer10 += accClose;
-            break;    
-        }    
-        $("#drawerNumber").change(function() {
-            minMax();
-        })
-        function minMax(){
-            var max = parseInt($("#drawerNumber").attr('max'));
-            var min = parseInt($("#drawerNumber").attr('min'));
-            if ($("#drawerNumber").val() > max)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '<div class="text-center">Maximum 10 Drawers</div>',
-                    text: 'The maximum number of drawers you can have is 10.'})
-                $("#drawerNumber").val(max);
-                generateAccCode();
-            }
-            else if ($("#drawerNumber").val() < min)
-            {
-                Swal.fire({
-                    icon: 'error',
-                    title: '<div class="text-center">Minimum 3 Drawers</div>',
-                    text: 'The minimum number of drawers you can have is 3.'})
-                $("#drawerNumber").val(min);
-                generateAccCode();
-            }       
-          }; 
+    var accHeadSizes = {
+        "acc-noH": "",
+        "acc-h2": "<h2 class=\"text-bg-uq p-2\">" + accHeadingText + "</h2>\n",
+        "acc-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + accHeadingText + "</h4>\n"
+    }
+    
+    var accResizedHead = accHeadSizes[accHeadSize] || "";
+    
+    var drawers = [accDrawers[4], accDrawers[5], accDrawers[6], accDrawers[7], accDrawers[8], accDrawers[9], accDrawers[10]];
+    var contents = [contentOpens[4], contentOpens[5], contentOpens[6], contentOpens[7], contentOpens[8], contentOpens[9], contentOpens[10]];
+
+    var accCode = accOpen + accDrawers[1] + contentOpens[1] + drawerClose + accDrawers[2] + contentOpens[2] + drawerClose + accDrawers[3] + contentOpens[3] + drawerClose;
+
+    for (let i = 0; i < drawerQuantity - 3; i++) {
+        accCode += drawers[i] + contents[i] + drawerClose;
+    }
+    
+    $("#drawerNumber").change(minMax);
+    
+    function minMax() {
+        var max = parseInt($("#drawerNumber").attr('max'));
+        var min = parseInt($("#drawerNumber").attr('min'));
+        var value = $("#drawerNumber").val();
+        if (value > max) {
+            Swal.fire({
+                icon: 'error',
+                title: '<div class="text-center">Maximum 10 Drawers</div>',
+                text: 'The maximum number of drawers you can have is 10.'
+            });
+            $("#drawerNumber").val(max);
+            generateAccCode();
+        } else if (value < min) {
+            Swal.fire({
+                icon: 'error',
+                title: '<div class="text-center">Minimum 3 Drawers</div>',
+                text: 'The minimum number of drawers you can have is 3.'
+            });
+            $("#drawerNumber").val(min);
+            generateAccCode();
+        }
+    }
+    
     var accFinalCode = sComm + accResizedHead + accCode + '\n' + eComm;
     $('#accFinalCode').val(accFinalCode);
     $('div#demo').html(accFinalCode);
-    $('h2.accordion-header').on('click',function(){
-        $('div.accordion-collapse').removeClass('show')
+    
+    $('h2.accordion-header').on('click', function() {
+        $('div.accordion-collapse').removeClass('show');
         console.log('function run');
     });
 } 
@@ -1177,4 +1115,39 @@ function generateReadmoreCode(){
     var finalReadmoreCode = readmoreResizedHead + tinyReadmorePreBtn + textAfterOpen + tinyReadmorePostBtn + textAfterClose + readmoreBtnOpen + iconToggleScript;
     $('#readmoreFinalCode').val(finalReadmoreCode);
     $('div#demo').html(finalReadmoreCode);
+}
+function copyCode() {
+    var activeBtn = $('button.active').attr('id');
+    var btnToCodeMap = {
+        'imgBuilderBtn': '#imgFinalCode',
+        'vidBuilderBtn': '#vidFinalCode',
+        'btnBuilderBtn': '#btnFinalCode',
+        'alertBuilderBtn': '#alertFinalCode',
+        'tooltipBuilderBtn': '#tooltipFinalCode',
+        'tableBuilderBtn': '#tableFinalCode',
+        'accBuilderBtn': '#accFinalCode',
+        'readmoreBuilderBtn': '#readmoreFinalCode'
+    };
+
+    if (activeBtn === 'tableBuilderBtn') {
+        generateTableCode();
+    }
+
+    var selectedCode = $(btnToCodeMap[activeBtn]).select();
+
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+        console.log("@GB: snippet = ", selectedCode.val());
+    } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    Swal.fire({
+        title: '<span class="fs-5 d-block mx-auto text-center">Code copied</span>',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1000 // Duration in milliseconds
+    });
 }
