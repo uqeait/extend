@@ -273,18 +273,6 @@
             })
             window.addEventListener('load', function () {
                 $('[data-bs-toggle="tooltip"]').tooltip();
-                /* $('#imgFinalCode').val(placeholderCode);
-                $('div#demo').html(placeholderCode);
-                $('#vidFinalCode').val(vidPlaceholderCode);
-                $('div#vidDemo').html(vidPlaceholderCod;
-                fullScreenImgToggle();
-                fullScreenVidToggle();
-                fullScreenBtnToggle();
-                fullScreenAlertToggle();
-                fullScreenTooltipToggle();
-                fullScreenAccToggle();
-                fullScreenTableToggle();
-                fullScreenReadmoreToggle();*/
             });
             $(function() {
                 var accNameTxt = $("#accName");
@@ -1771,93 +1759,34 @@
                         <div id="accStep4">
                         <h5 class="font-weight-bold mt-3">First draw open/closed<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Choose if the first draw of the accordion is open (default) or closed." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
                         <div class="form-check form-check-inline" id="accFirstOpen" onchange="generateAccCode()">
-                            <input class="form-check-input" name="accFirstOpen" id="firstOpen" type="radio" value=" show" checked>
+                            <input class="form-check-input" name="accFirstOpen" id="firstOpen" type="radio" value="" checked>
                             <label class="form-check-label" for="firstOpen">First draw open</label>
                         </div>
                         <div class="form-check form-check-inline" id="accFirstOpen" onchange="generateAccCode()">
-                            <input class="form-check-input" name="accFirstOpen" id="firstClosed" type="radio" value="">
+                            <input class="form-check-input" name="accFirstOpen" id="firstClosed" type="radio" value=" collapse">
                             <label class="form-check-label" for="firstClosed">First draw closed</label>
                         </div>
                         </div>
                         <hr>
                         <div id="accDrawerContent">
                             <div id="accStep5">
-                            <h5 class="font-weight-bold mt-3">Drawer headings/Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
-                            <div id="drawer1">
-                                <h6>Drawer 1 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc1Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onkeyup="generateAccCode()" id="acc1Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
+                                <div id="drawerContainer"></div>
                             </div>
-                            </div>
-                            <hr>
-                            <div id="drawer2">
-                                <h6>Drawer 2 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc2Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc2Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <hr>
-                            <div id="drawer3">
-                                <h6>Drawer 3 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc3Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc3Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <div id="drawer4" class="fade d-none">
-                                <hr>
-                                <h6>Drawer 4 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc4Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc4Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <div id="drawer5" class="fade d-none">
-                                <hr>
-                                <h6>Drawer 5 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc5Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc5Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <div id="drawer6" class="fade d-none">
-                                <hr>
-                                <h6>Drawer 6 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc6Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc6Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <div id="drawer7" class="fade d-none">
-                                <hr>
-                                <h6>Drawer 7 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                                <textarea onchange="generateAccCode()" id="acc7Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                                <textarea onchange="generateAccCode()" id="acc7Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                            </div>
-                            <div id="drawer8" class="fade d-none">
-                            <hr>
-                            <h6>Drawer 8 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                            <textarea onchange="generateAccCode()" id="acc8Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                            <textarea onchange="generateAccCode()" id="acc8Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
                         </div>
-                        <div id="drawer9" class="fade d-none">
-                            <hr>
-                            <h6>Drawer 9 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                            <textarea onchange="generateAccCode()" id="acc9Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                            <textarea onchange="generateAccCode()" id="acc9Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
                         </div>
-                        <div id="drawer10" class="fade d-none">
-                            <hr>
-                            <h6>Drawer 10 Heading + Content<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Create the headings for your accordion drawers and content for your accordions." class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h6>
-                            <textarea onchange="generateAccCode()" id="acc10Btn" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Heading on the accordion button. Max 75 characters"></textarea>
-                            <textarea onchange="generateAccCode()" id="acc10Content" class="tinyMCEacc border border-dark rounded w-100 p-2" rows="5" placeholder="Content that will display on clicking the relative accordion button."></textarea>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-6">
                     <div class="sticky-top top-6">
                         <div id="accStep6">
                         <h5 class="font-weight-bold mt-3">Number of drawers<span class="hideableinstruct text-success small" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Number of accordion drawers. Minimum 3. Maximum 10. Use the plus/minus controls or type a number into the input box.">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
                         <div class="input-group inline-group mx-auto mw-25">
                             <div class="input-group-prepend my-auto">
-                                <button title="Subtract accordion drawer" onclick="document.getElementById('drawerNumber').stepDown();generateAccCode()" class="btn btn-danger btn-minus" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Min 3">
+                                <button id="minusButton" title="Subtract accordion drawer" onclick="document.getElementById('drawerNumber').stepDown();generateAccCode()" class="btn btn-danger btn-minus" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Min 3">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                             </div>
                             <input title="Number of drawers" onchange="generateAccCode()" id="drawerNumber" class="form-control quantity text-center fs-4 mx-2" min="3" max="10" name="quantity" value="3" type="number">
                             <div class="input-group-append my-auto">
-                                <button title="Add accordion drawer" onclick="document.getElementById('drawerNumber').stepUp();generateAccCode()" class="btn btn-success btn-plus" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Max 10">
+                                <button id="plusButton" title="Add accordion drawer" onclick="document.getElementById('drawerNumber').stepUp();generateAccCode()" class="btn btn-success btn-plus" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Max 10">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>

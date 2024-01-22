@@ -1,5 +1,10 @@
 var sComm = "<!-- Start Code Centre Element-->\n";
 var eComm = "<!-- End Code Centre Element-->\n";
+const commonPluginsTwo = [
+  "advlist", "autolink", "lists", "link", "image", "charmap", "preview", "anchor", "searchreplace", "visualblocks", "code", "fullscreen", "insertdatetime", "media", "table", "help", "wordcount",
+];
+const commonToolbarTwo =
+  "undo redo blocks bold italic alignleft aligncenter alignright bullist numlist table link code charmap removeformat fullscreen";
 function generateImgTextCode() {
     //Retrive values and text from the user's input
     var imgPosition = $('input[name="imagePosition"]:checked').val();
@@ -954,115 +959,173 @@ function makeTable(){
     tinymce.get("tinyMCEtable").execCommand('mceTableRowType', false, { type: 'body' });
     tinymce.activeEditor.focus();
   }
-  function generateAccCode(){
-    var accName = $('#accName').val();
-    var accHeadingText = $('#accHeadingText').val();
-    var accHeadSize = $('input[name="accHeadSize"]:checked').val();
-    var showHideFirst = $('input[name="accFirstOpen"]:checked').val();
-    var drawerQuantity = $('#drawerNumber').val();
-    var drawerTitles = [];
-    for (let i = 1; i <= 10; i++) {
-        drawerTitles[i] = $(`#acc${i}Btn`).val();
-    }
-    var contentBodies = [];
-    for (let i = 1; i <= 10; i++) {
-        contentBodies[i] = tinymce.get(`acc${i}Content`).getContent();
-    }
-    function createAccDrawer(drawerNumber, drawerTitle, isCollapsed = true) {
-        const expanded = isCollapsed ? 'false' : 'true';
-        const collapsed = isCollapsed ? 'collapsed' : '';
-        return `<div class="accordion-item">
-            <h2 class="accordion-header" id="heading${drawerNumber}">
-                <button class="accordion-button ${collapsed}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${drawerNumber}" aria-expanded="${expanded}" aria-controls="collapse${drawerNumber}">
-                    ${drawerTitle}
-                </button>
-            </h2>`;
-    }
-    
-    function createContentOpen(drawerNumber, contentBody, showHideFirst = '', accName) {
-        const showHide = showHideFirst === 'true' && drawerNumber === 1 ? ' show' : '';
-        return `<div id="collapse${drawerNumber}" class="accordion-collapse collapse${showHide}" aria-labelledby="heading${drawerNumber}" data-bs-parent="#accordion${accName}">
-            <div class="accordion-body">${contentBody}</div>
-        </div>`;
-    }
-   
-    accCode += accClose;
-    var accOpen = `<div class="accordion" id="accordion${accName}">\n`;
-    var accClose = '</div>';
-    var drawerClose = '</div>\n';
-    
-    var accDrawers = [];
-    var contentOpens = [];
-    for (let i = 1; i <= 10; i++) {
-        accDrawers[i] = createAccDrawer(i, drawerTitles[i], i !== 1);
-        contentOpens[i] = createContentOpen(i, contentBodies[i], i === 1 ? ' show' : '', accName);
-    }
-    $('#accHeadingText').on('keyup', function() {
-        const value = $(this).val().trim() !== '' ? 'acc-h2' : 'acc-noH';
-        $('input[type="radio"][value="' + value + '"]').prop('checked', true);
-    });
-     // Generate placeholders for accordion drawers 1, 2, and 3
-     for (let i = 1; i <= 3; i++) {
-        accDrawers[i] = createAccDrawer(i, drawerTitles[i], showHideFirst === 'true' && i === 1);
-        contentOpens[i] = createContentOpen(i, contentBodies[i], showHideFirst === 'true' && i === 1, accName);
-    }
-    
-    // Generate the full accordion code
-    var accCode = accOpen;
-    for (let i = 1; i <= 3; i++) {
-        accCode += accDrawers[i] + contentOpens[i] + drawerClose;
-    }
-    var accHeadSizes = {
-        "acc-noH": "",
-        "acc-h2": "<h2 class=\"text-bg-uq p-2\">" + accHeadingText + "</h2>\n",
-        "acc-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + accHeadingText + "</h4>\n"
-    }
-    
-    var accResizedHead = accHeadSizes[accHeadSize] || "";
-    
-    var drawers = [accDrawers[4], accDrawers[5], accDrawers[6], accDrawers[7], accDrawers[8], accDrawers[9], accDrawers[10]];
-    var contents = [contentOpens[4], contentOpens[5], contentOpens[6], contentOpens[7], contentOpens[8], contentOpens[9], contentOpens[10]];
+ function generateAccCode() {
+   const accName = $("#accName").val();
+   const accHeadingText = $("#accHeadingText").val();
+   const accHeadSize = $('input[name="accHeadSize"]:checked').val();
+   const showHideFirst =
+     $('input[name="accFirstOpen"]:checked').val() === "" ? " show" : "";
+   const drawerQuantity = parseInt($("#drawerNumber").val());
+   // Clear the container first
+   //$("#drawerContainer").empty();
 
-    var accCode = accOpen + accDrawers[1] + contentOpens[1] + drawerClose + accDrawers[2] + contentOpens[2] + drawerClose + accDrawers[3] + contentOpens[3] + drawerClose;
+   for (let i = 1; i <= 10; i++) {
+     // Check if the drawer already exists
+     if (!$(`#drawer${i}`).length) {
+       // Create drawer div
+       let drawerDiv = $("<div>")
+         .attr("id", `drawer${i}`)
+         .addClass("fade show");
 
-    for (let i = 0; i < drawerQuantity - 3; i++) {
-        accCode += drawers[i] + contents[i] + drawerClose;
-    }
-    
-    $("#drawerNumber").change(minMax);
-    
-    function minMax() {
-        var max = parseInt($("#drawerNumber").attr('max'));
-        var min = parseInt($("#drawerNumber").attr('min'));
-        var value = $("#drawerNumber").val();
-        if (value > max) {
-            Swal.fire({
-                icon: 'error',
-                title: '<div class="text-center">Maximum 10 Drawers</div>',
-                text: 'The maximum number of drawers you can have is 10.'
-            });
-            $("#drawerNumber").val(max);
-            generateAccCode();
-        } else if (value < min) {
-            Swal.fire({
-                icon: 'error',
-                title: '<div class="text-center">Minimum 3 Drawers</div>',
-                text: 'The minimum number of drawers you can have is 3.'
-            });
-            $("#drawerNumber").val(min);
-            generateAccCode();
-        }
-    }
-    
-    var accFinalCode = sComm + accResizedHead + accCode + '\n' + eComm;
-    $('#accFinalCode').val(accFinalCode);
-    $('div#demo').html(accFinalCode);
-    
-    $('h2.accordion-header').on('click', function() {
-        $('div.accordion-collapse').removeClass('show');
-        console.log('function run');
-    });
-} 
+       // Create hr
+       let hr = $("<hr>");
+
+       // Create h6
+       let h6 = $("<h6>").text(`Drawer ${i} Heading + Content`);
+
+       // Create textarea for heading
+       let headingTextarea = $("<textarea>")
+         .attr("id", `acc${i}Btn`)
+         .attr("maxlength", "125")
+         .addClass("border border-dark rounded w-100 p-2")
+         .attr("rows", "1")
+         .attr(
+           "placeholder",
+           "Heading on the accordion button. Max 125 characters"
+         )
+         .on("change", generateAccCode);
+
+       // Create textarea for content
+       let contentTextarea = $("<textarea>")
+         .attr("id", `acc${i}Content`)
+         .addClass("tinyMCEacc border border-dark rounded w-100 p-2")
+         .attr("rows", "5")
+         .attr(
+           "placeholder",
+           "Content that will display on clicking the relative accordion button."
+         )
+         .on("change", generateAccCode);
+
+       // Append elements to drawer div
+       drawerDiv.append(hr, h6, headingTextarea, contentTextarea);
+
+       // Append drawer div to container
+       $("#drawerContainer").append(drawerDiv);
+
+       // Initialize tinyMCE for the content textarea
+       tinymce.init({
+         selector: `#acc${i}Content`,
+         plugins: commonPluginsTwo,
+         toolbar: commonToolbarTwo,
+         menubar: false,
+         height: "350",
+         table_header_type: "sectionCells",
+         table_default_attributes: {
+           class:
+             "table table-bordered table-striped table-hover table-responsive",
+         },
+         table_use_colgroups: false,
+         table_default_styles: {},
+         invalid_styles: {
+           table: "width height",
+           tr: "width height",
+           th: "width height",
+           td: "width height",
+         },
+       });
+     }
+
+     // Show or hide the drawer based on the drawer quantity
+     if (i <= drawerQuantity) {
+       $(`#drawer${i}`).removeClass("d-none").addClass("show");
+     } else {
+       $(`#drawer${i}`).removeClass("show").addClass("d-none");
+     }
+   }
+
+   // Simplify accordion heading based on selected size
+   const accHeadSizes = {
+     "acc-noH": "",
+     "acc-h2": `<h2 class="text-bg-uq p-2">${accHeadingText}</h2>\n`,
+     "acc-h4": `<h4 class="text-bg-info bg-opacity-25 p-2">${accHeadingText}</h4>\n`,
+   };
+   const accResizedHead = accHeadSizes[accHeadSize] || "";
+
+   let accCode = `<div class="accordion" id="accordion${accName}">\n`;
+
+   // Function to generate accordion drawer
+   const createDrawer = (index, title, content, isOpen = false) => {
+     const openClass = index === 1 && isOpen ? showHideFirst : "";
+     return `<div class="accordion-item">
+    <h2 class="accordion-header" id="heading${index}">
+        <button class="accordion-button${openClass === "" ? " collapsed" : ""}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 1 ? "true" : "false"}" aria-controls="collapse${index}">
+    ${title}
+</button>
+    </h2>
+    <div id="collapse${index}" class="accordion-collapse collapse${openClass}" aria-labelledby="heading${index}" data-bs-parent="#accordion${accName}">
+        <div class="accordion-body">${content}</div>
+    </div>
+</div>\n`;
+   };
+
+   // Append drawers based on quantity
+   for (let i = 1; i <= drawerQuantity; i++) {
+     const title = $(`#acc${i}Btn`).val();
+     const content = tinymce.get(`acc${i}Content`).getContent();
+     accCode += createDrawer(i, title, content, i === 1);
+   }
+
+   accCode += "</div>"; // Close accordion div
+
+   // Final output
+   $("#accFinalCode").val(sComm + accResizedHead + accCode + "\n" + eComm);
+   $("div#demo").html(sComm + accResizedHead + accCode + "\n" + eComm);
+
+   // Accordion click event
+   $("h2.accordion-header").on("click", function () {
+     $("div.accordion-collapse").removeClass("show");
+   });
+
+   // Input change events for drawer number validation and dynamic UI updates
+   $("#drawerNumber").change(validateDrawerNumber);
+   $("#accHeadingText").keyup(updateHeadingSize);
+
+   function validateDrawerNumber() {
+     const max = parseInt($("#drawerNumber").attr("max"));
+     const min = parseInt($("#drawerNumber").attr("min"));
+     let val = parseInt($("#drawerNumber").val());
+     if (val >= max) {
+       Swal.fire({
+         icon: "error",
+         title: '<div class="text-center">Maximum 10 Drawers</div>',
+         text: "The maximum number of drawers you can have is 10.",
+       });
+       $("#drawerNumber").val(max);
+     } else if (val <= min) {
+       Swal.fire({
+         icon: "error",
+         title: '<div class="text-center">Minimum 3 Drawers</div>',
+         text: "The minimum number of drawers you can have is 3.",
+       });
+       $("#drawerNumber").val(min);
+     }
+     generateAccCode(); // Regenerate the accordion code with the new drawer number
+   }
+
+   // Attach event listener to drawerNumber input field
+   $("#drawerNumber").on("change", function () {
+     validateDrawerNumber();
+   });
+
+   function updateHeadingSize() {
+     if ($("#accHeadingText").val().trim() !== "") {
+       $('input[type="radio"][value="acc-h2"]').prop("checked", true);
+     } else {
+       $('input[type="radio"][value="acc-noH"]').prop("checked", true);
+     }
+   }
+ }
+
 function generateReadmoreCode(){
     var readmorePreBtnPlaceholder = '<p>This is where the pre button text will appear.</p>\n';
     var readmorePostBtnPlaceholder = '<p>This is where the post button text will appear.</p>\n';
