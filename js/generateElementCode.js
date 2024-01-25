@@ -5,232 +5,543 @@ const commonPluginsTwo = [
 ];
 const commonToolbarTwo =
   "undo redo blocks bold italic alignleft aligncenter alignright bullist numlist table link code charmap removeformat fullscreen";
-function generateImgTextCode() {
-    //Retrive values and text from the user's input
-    var imgPosition = $('input[name="imagePosition"]:checked').val();
-    var imgWidth = $('input[name="imageWidth"]:checked').val();
-    var imgVert = $('input[name="alignImgVert"]:checked').val();
-    var txtVert = $('input[name="alignTextVert"]:checked').val();
-    var imgBorder = $('input[name="imgBorder"]:checked').val();
-    function toggleImgOnlyOn(){
-        $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').addClass('d-none');
-            }
-    function toggleImgOnlyOff(){
-        $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').addClass('show');
-    }
-    function imgOnlyOff(){
-        if($('#imgTinyMCE').hasClass('d-none') == true){
-            $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').removeClass('d-none');
-            setTimeout(toggleImgOnlyOff, 300);
-            secondImageOff();
-        }
-    }
-    function secondImageOn(){
-        $('#secondImageOptions').removeClass('d-none');
-        setTimeout(function(){
-        $('#secondImageOptions').addClass('show');
-        },300)
-    }
-    function secondImageOff(){
-        $('#secondImageOptions').removeClass('show');
-        setTimeout(function(){
-        $('#secondImageOptions').addClass('d-none');
-        },300)
-    }        
-    //var tinyText = tinymce.activeEditor.getContent() + '\n';
-    if(tinymce.get("tinyMCEimg").getContent() !==''){
-        tinyTextimg = tinymce.get("tinyMCEimg").getContent() + '\n';
-    }
-    else if(imgPosition == 'floatRight' && tinymce.get("tinyMCEimg").getContent() ==''){
-        tinyTextimg = '<p>This is a large amount of placeholder text that we have put in place to show you how the float right/text wrapping works.</p><p>You can see how once the length of the text down the page goes longer than the image on the right, the text will wrap around underneath the image.</p><p>If you only choose to have the image left or right, the text will not wrap around underneath the image. This is not to say that this is the best experience for every outcome. Sometimes using the vertical align for text or for the image is a better option (Align text or image vertically slightly further down the page on the left). So try out different combinations to see what works best for your context.</p><p>Also, if you click the full screen button below, this text may no longer wrap around. This is something to be aware of, that a lot of text is needed to exceed the length of an image and for wrapping to be a possible consideration for your context. The amount of text may not stretch past the image once in full screen mode with much more space for the text and the image.</p>'
-    }
-    else{
-        tinyTextimg = textPlaceholder
-    }
-    
-    var colImgOpen = '<div class="col-lg' + imgVert + '">\n';
-    var colTxtOpen = '<div class="col-lg' + txtVert + '">\n';
-    var col4ImgOpen = '<div class="col-lg-4' + imgVert + '">\n';
-    var col3ImgOpen = '<div class="col-lg-3' + imgVert + '">\n';
-    var headingText = $('#headingText').val();
-    var headSize = $('input[name="headSize"]:checked').val();
-    var imgLink = $('#imgLink').val();
-    var imgLink2 = $('#imgLink2').val();
-    if(imgLink !== ''){
-        if(imgLink.includes('/static')){
-            alert('You have used the studio link which will work with the code, and in Extend, but will not display here. If you want to see a genuine preview, go back to Extend and copy the Web link to the image')
-        }
-        else if(imgLink.includes('extend.uq.edu.au')){
-            var findLastBackslash = imgLink.lastIndexOf('@');
-            var result = imgLink.substring(findLastBackslash + 1);
-            var result = '/static/' + result;
-        }
-        else{
-            imgLink = imgLink;
-        }
-    }
-    else{
-        imgLink = imgPlaceholderLink
-    }
-    if(imgLink2 !== ''){
-        if(imgLink2.includes('/static')){
-            alert('You have used the studio link which will work with the code, and in Extend, but will not display here. If you want to see a genuine preview, go back to Extend and copy the Web link to the image')
-        }
-        else if(imgLink2.includes('extend.uq.edu.au')){
-            var findLastBackslash2 = imgLink2.lastIndexOf('@');
-            var result2 = imgLink2.substring(findLastBackslash2 + 1);
-            var result2 = '/static/' + result2;
-        }
-        else{
-            imgLink2 = imgLink2;
-        }
-    }
-    else{
-        imgLink2 = imgPlaceholderLink
-    }  
-    //If a person types in a heading, change the heading size to make it appear
-        // Check if the textarea contains text
-        $('#headingText').on('keyup', function() {
-            // Check if the textarea contains text
-            if ($(this).val().trim() !== '') {
-          // Set the radio button with value 'h2' to checked
-          $('input[type="radio"][value="img-h2"]').prop('checked', true);
-        }
-         else {
-          // Set the radio button with value 'noH' to checked
-          $('input[type="radio"][value="img-noH"]').prop('checked', true);
-        }
-      });  
-    var altText = $('#altText').val();
-    var altText2 = $('#altText2').val();
-    var captionText = tinymce.get("tinyMCEcaption").getContent();
-    var captionText2 = tinymce.get("tinyMCEcaption2").getContent();
-    var imgPreviewCode = '<figure>\n<img class="img-fluid d-block mx-auto' + imgBorder + '" src="' + imgLink + '" alt="' + altText + '" />\n<figcaption class="text-center mt-2">' + captionText + '</figcaption>\n</figure>\n';
-    var imgCode = '<figure>\n<img class="img-fluid d-block mx-auto' + imgBorder + '" src="' + result + '" alt="' + altText + '" />\n<figcaption class="text-center mt-2">' + captionText + '</figcaption>\n</figure>\n';
-    var imgPreviewCode2 = '<figure>\n<img class="img-fluid d-block mx-auto' + imgBorder + '" src="' + imgLink2 + '" alt="' + altText2 + '" />\n<figcaption class="text-center mt-2">' + captionText2 + '</figcaption>\n</figure>\n';
-    var imgCode2 = '<figure>\n<img class="img-fluid d-block mx-auto' + imgBorder + '" src="' + result2 + '" alt="' + altText2 + '" />\n<figcaption class="text-center mt-2">' + captionText2 + '</figcaption>\n</figure>\n';
-    var imgPreviewFloat = '<figure>\n<img class="img-fluid" src="' + imgLink + '" alt="' + altText + '" />\n<figcaption class="text-center mt-2">' + captionText + '</figcaption>\n</figure>\n';
-    var imgFloat = '<figure>\n<img class="img-fluid" src="' + result + '" alt="' + altText + '" />\n<figcaption class="text-center mt-2">' + captionText + '</figcaption>\n</figure>\n';
-    if(headSize !== "img-noH"){
-        //Resizing the heading text
-        var sizes = {
-            "img-noH": "",
-            "img-h2": "<h2 class=\"text-bg-uq p-2\">" + headingText + "</h2>\n",
-            "img-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + headingText + "</h4>\n"
-        }
-        resizedHead = sizes[headSize];
-    }
-    else {
-        resizedHead = "";
-    } 
-    const altTextInput = document.getElementById('altText');
-    const copyCodeBtn = document.getElementById('imgCopyCodeBtn');
+ // Define the debounce function
+ var rowOpen = '<div class="row">\n';
+ var colOpen = '<div class="col-lg">\n';
+ var col3Open = '<div class="col-lg-3">\n';
+ var col4Open = '<div class="col-lg-4">\n';
+ var colFloatOpen =
+   '<div class="col-lg">\n<div class="col-lg-6 float-lg-end m-2">\n';
+ var col3FloatOpen =
+   '<div class="col-lg">\n<div class="col-lg-3 float-lg-end m-2">\n';
+ var col4FloatOpen =
+   '<div class="col-lg">\n<div class="col-lg-4 float-lg-end m-2">\n';
+ var respVidOpen = '<div class="ratio ratio-16x9">\n';
+ var pOpen = "<p>";
+ var ctrBtn = " d-block mx-auto";
+ var w25 = " w-25";
+ var w50 = " w-50";
+ var w75 = " w-75";
+ var w100 = " w-100";
+ var btnPlaceholder = '<a src="';
+ var divClose = "</div>\n";
+ var rowClose = "</div>\n</div>\n";
+ var uqh2 = "text-bg-uq p-2";
+ var resizedHead = "";
+ var alertOpen = '<div class="alert alert-';
+ var alertDivClose = ' d-block mx-auto" role="alert">\n';
+ var quotationsLeft =
+   '<span aria-hidden="true" class="fa fa-quote-left fa-2x"></span>\n';
+ var figOpen = '<figure class="mb-0">\n<blockquote class="blockquote mb-0">';
+ var quoteWrapper = '<div class="';
+ var endQuoteWrapper = "</div>";
+ var closeWrapper = '">';
+ var figCaptionOpen =
+   '<figcaption class="blockquote-footer mb-0 mt-4 text-end fs-6">';
+ var figCaptionClose = "\n</figcaption>\n</blockquote>\n</figure>";
+ var quotationsRight =
+   '<p class="mb-4"><span aria-hidden="true" class="fa fa-quote-right fa-pull-right fa-2x"></span></p>\n</div>';
+ var vidResizedHead = "";
+ //Placeholder variables so there is a placeholder preview for the user to see initially
+ var textPlaceholder =
+   '<p class="mb-0">This is placeholder text that will update once you input your own text</p>\n';
+ var imgPlaceholder =
+   '<figure>\n<img class="img-fluid d-block mx-auto" alt="This is alt text" src="https://uqeait.github.io/uqextend/img/PLACEHOLDER.png" />\n<figcaption class="text-center mt-2">This is the placeholder image caption</figcaption>\n</figure>\n';
+ var imgPlaceholderLink =
+   "https://uqeait.github.io/uqextend/img/PLACEHOLDER.png";
+ var placeholderCode =
+   rowOpen +
+   colOpen +
+   textPlaceholder +
+   divClose +
+   colOpen +
+   imgPlaceholder +
+   rowClose;
+ var vidPlaceholder =
+   '<iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+ var vidPlaceholderLink = "https://www.youtube.com/embed/NpEaa2P7qZI";
+ var vidPlaceholderCode =
+   rowOpen +
+   colOpen +
+   textPlaceholder +
+   divClose +
+   colOpen +
+   respVidOpen +
+   vidPlaceholder +
+   rowClose;
+ var btnPlaceholderLink = "https://extend.uq.edu.au/dashboard";
+ var tooltipPlaceholderText =
+   "This is a tooltip to help people better understand a term, or provide a reminder of what an acronym stands for.";
+ function generateImgTextCode() {
+   //Retrive values and text from the user's input
+   var imgPosition = $('input[name="imagePosition"]:checked').val();
+   var imgWidth = $('input[name="imageWidth"]:checked').val();
+   var imgVert = $('input[name="alignImgVert"]:checked').val();
+   var txtVert = $('input[name="alignTextVert"]:checked').val();
+   var imgBorder = $('input[name="imgBorder"]:checked').val();
+   function toggleImgOnlyOn() {
+     $("#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign").addClass(
+       "d-none"
+     );
+   }
+   function toggleImgOnlyOff() {
+     $("#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign").addClass("show");
+   }
+   function imgOnlyOff() {
+     if ($("#imgTinyMCE").hasClass("d-none") == true) {
+       $("#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign").removeClass(
+         "d-none"
+       );
+       setTimeout(toggleImgOnlyOff, 300);
+       secondImageOff();
+     }
+   }
+   function secondImageOn() {
+     $("#secondImageOptions").removeClass("d-none");
+     setTimeout(function () {
+       $("#secondImageOptions").addClass("show");
+     }, 300);
+   }
+   function secondImageOff() {
+     $("#secondImageOptions").removeClass("show");
+     setTimeout(function () {
+       $("#secondImageOptions").addClass("d-none");
+     }, 300);
+   }
+   //var tinyText = tinymce.activeEditor.getContent() + '\n';
+   if (tinymce.get("tinyMCEimg").getContent() !== "") {
+     tinyTextimg = tinymce.get("tinyMCEimg").getContent() + "\n";
+   } else if (
+     imgPosition == "floatRight" &&
+     tinymce.get("tinyMCEimg").getContent() == ""
+   ) {
+     tinyTextimg =
+       "<p>This is a large amount of placeholder text that we have put in place to show you how the float right/text wrapping works.</p><p>You can see how once the length of the text down the page goes longer than the image on the right, the text will wrap around underneath the image.</p><p>If you only choose to have the image left or right, the text will not wrap around underneath the image. This is not to say that this is the best experience for every outcome. Sometimes using the vertical align for text or for the image is a better option (Align text or image vertically slightly further down the page on the left). So try out different combinations to see what works best for your context.</p><p>Also, if you click the full screen button below, this text may no longer wrap around. This is something to be aware of, that a lot of text is needed to exceed the length of an image and for wrapping to be a possible consideration for your context. The amount of text may not stretch past the image once in full screen mode with much more space for the text and the image.</p>";
+   } else {
+     tinyTextimg = textPlaceholder;
+   }
 
-    copyCodeBtn.addEventListener('click', handleCopyClick);
+   var colImgOpen = '<div class="col-lg' + imgVert + '">\n';
+   var colTxtOpen = '<div class="col-lg' + txtVert + '">\n';
+   var col4ImgOpen = '<div class="col-lg-4' + imgVert + '">\n';
+   var col3ImgOpen = '<div class="col-lg-3' + imgVert + '">\n';
+   var headingText = $("#headingText").val();
+   var headSize = $('input[name="headSize"]:checked').val();
+   var imgLink = $("#imgLink").val();
+   var imgLink2 = $("#imgLink2").val();
+   if (imgLink !== "") {
+     if (imgLink.includes("/static")) {
+       alert(
+         "You have used the studio link which will work with the code, and in Extend, but will not display here. If you want to see a genuine preview, go back to Extend and copy the Web link to the image"
+       );
+     } else if (imgLink.includes("extend.uq.edu.au")) {
+       var findLastBackslash = imgLink.lastIndexOf("@");
+       var result = imgLink.substring(findLastBackslash + 1);
+       var result = "/static/" + result;
+     } else {
+       imgLink = imgLink;
+     }
+   } else {
+     imgLink = imgPlaceholderLink;
+   }
+   if (imgLink2 !== "") {
+     if (imgLink2.includes("/static")) {
+       alert(
+         "You have used the studio link which will work with the code, and in Extend, but will not display here. If you want to see a genuine preview, go back to Extend and copy the Web link to the image"
+       );
+     } else if (imgLink2.includes("extend.uq.edu.au")) {
+       var findLastBackslash2 = imgLink2.lastIndexOf("@");
+       var result2 = imgLink2.substring(findLastBackslash2 + 1);
+       var result2 = "/static/" + result2;
+     } else {
+       imgLink2 = imgLink2;
+     }
+   } else {
+     imgLink2 = imgPlaceholderLink;
+   }
+   //If a person types in a heading, change the heading size to make it appear
+   // Check if the textarea contains text
+   $("#headingText").on("keyup", function () {
+     // Check if the textarea contains text
+     if ($(this).val().trim() !== "") {
+       // Set the radio button with value 'h2' to checked
+       $('input[type="radio"][value="img-h2"]').prop("checked", true);
+     } else {
+       // Set the radio button with value 'noH' to checked
+       $('input[type="radio"][value="img-noH"]').prop("checked", true);
+     }
+   });
+   var altText = $("#altText").val();
+   var altText2 = $("#altText2").val();
+   var captionText = tinymce.get("tinyMCEcaption").getContent();
+   var captionText2 = tinymce.get("tinyMCEcaption2").getContent();
+   var imgPreviewCode =
+     '<figure>\n<img class="img-fluid d-block mx-auto' +
+     imgBorder +
+     '" src="' +
+     imgLink +
+     '" alt="' +
+     altText +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText +
+     "</figcaption>\n</figure>\n";
+   var imgCode =
+     '<figure>\n<img class="img-fluid d-block mx-auto' +
+     imgBorder +
+     '" src="' +
+     result +
+     '" alt="' +
+     altText +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText +
+     "</figcaption>\n</figure>\n";
+   var imgPreviewCode2 =
+     '<figure>\n<img class="img-fluid d-block mx-auto' +
+     imgBorder +
+     '" src="' +
+     imgLink2 +
+     '" alt="' +
+     altText2 +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText2 +
+     "</figcaption>\n</figure>\n";
+   var imgCode2 =
+     '<figure>\n<img class="img-fluid d-block mx-auto' +
+     imgBorder +
+     '" src="' +
+     result2 +
+     '" alt="' +
+     altText2 +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText2 +
+     "</figcaption>\n</figure>\n";
+   var imgPreviewFloat =
+     '<figure>\n<img class="img-fluid" src="' +
+     imgLink +
+     '" alt="' +
+     altText +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText +
+     "</figcaption>\n</figure>\n";
+   var imgFloat =
+     '<figure>\n<img class="img-fluid" src="' +
+     result +
+     '" alt="' +
+     altText +
+     '" />\n<figcaption class="text-center mt-2">' +
+     captionText +
+     "</figcaption>\n</figure>\n";
+   if (headSize !== "img-noH") {
+     //Resizing the heading text
+     var sizes = {
+       "img-noH": "",
+       "img-h2": '<h2 class="text-bg-uq p-2">' + headingText + "</h2>\n",
+       "img-h4":
+         '<h4 class="text-bg-info bg-opacity-25 p-2">' +
+         headingText +
+         "</h4>\n",
+     };
+     resizedHead = sizes[headSize];
+   } else {
+     resizedHead = "";
+   }
+   const altTextInput = document.getElementById("altText");
+   const copyCodeBtn = document.getElementById("imgCopyCodeBtn");
 
-    function handleCopyClick(event) {
-      if (!altTextInput.value) {
-        Swal.fire({
-          icon: 'info',
-          title: '<span class="fs-5 d-block mx-auto text-center">Accessibility info needed!</span>',
-          text: 'Please provide an alt text for the image to improve accessibility before copying the code.'
-        });
-        return;
-      }
+   copyCodeBtn.addEventListener("click", handleCopyClick);
 
-      // Replace this line with your existing copyCode() function to copy the generated code
-      copyCode(); // Pass the alt text as an argument
+   function handleCopyClick(event) {
+     if (!altTextInput.value) {
+       Swal.fire({
+         icon: "info",
+         title:
+           '<span class="fs-5 d-block mx-auto text-center">Accessibility info needed!</span>',
+         text: "Please provide an alt text for the image to improve accessibility before copying the code.",
+       });
+       return;
+     }
 
-      Swal.fire({
-        icon: 'success',
-        title: 'Copied!',
-        text: 'The code has been copied to your clipboard.'
-      });
-    }
+     // Replace this line with your existing copyCode() function to copy the generated code
+     copyCode(); // Pass the alt text as an argument
 
-    //Changing code order depending on selections
-    if(imgPosition == "left" && imgWidth=="50"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + colImgOpen + imgCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colImgOpen + imgPreviewCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "right" && imgWidth == "50"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + colImgOpen + imgCode + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + colImgOpen + imgPreviewCode + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "left" && imgWidth == "33"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + col4ImgOpen + imgCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + col4ImgOpen + imgPreviewCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);                
-    }
-    else if(imgPosition == "left" && imgWidth == "25"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + col3ImgOpen + imgCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + col3ImgOpen + imgPreviewCode + divClose + colTxtOpen + tinyTextimg  + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "right" && imgWidth == "33"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + col4ImgOpen + imgCode + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + col4ImgOpen + imgPreviewCode + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "right" && imgWidth == "25"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + col3ImgOpen + imgCode + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colTxtOpen + tinyTextimg + divClose + col3ImgOpen + imgPreviewCode + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "floatRight" && imgWidth =="50"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + colFloatOpen + imgFloat + divClose + tinyTextimg + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colFloatOpen + imgPreviewFloat + divClose + tinyTextimg + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "floatRight" && imgWidth == "33"){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + col4FloatOpen + imgFloat + divClose + tinyTextimg + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + col4FloatOpen + imgPreviewFloat + divClose + tinyTextimg + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "floatRight" && imgWidth == "25" ){
-        imgOnlyOff();
-        var finalCode = sComm + resizedHead + rowOpen + col3FloatOpen + imgFloat + divClose + tinyTextimg + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + col3FloatOpen + imgPreviewFloat + divClose + tinyTextimg + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if(imgPosition == "imgOnly"){
-        $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').removeClass('show');
-        setTimeout(toggleImgOnlyOn, 300);
-        secondImageOff();
-        var finalCode = sComm + resizedHead + imgCode + eComm;
-        var previewCode = sComm + resizedHead + imgPreviewCode + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-    else if (imgPosition == "imgSbS"){
-        $('#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign').removeClass('show');
-        setTimeout(toggleImgOnlyOn, 300);
-        secondImageOn();
-        var finalCode = sComm + resizedHead + rowOpen + colOpen + imgCode + divClose + colOpen + imgCode2 + rowClose + eComm;
-        var previewCode = sComm + resizedHead + rowOpen + colOpen + imgPreviewCode + divClose + colOpen + imgPreviewCode2 + rowClose + eComm;
-        $('#imgFinalCode').val(finalCode);
-        $('div#demo').html(previewCode);
-    }
-}
+     Swal.fire({
+       icon: "success",
+       title: "Copied!",
+       text: "The code has been copied to your clipboard.",
+     });
+   }
+
+   //Changing code order depending on selections
+   if (imgPosition == "left" && imgWidth == "50") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colImgOpen +
+       imgCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colImgOpen +
+       imgPreviewCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "right" && imgWidth == "50") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       colImgOpen +
+       imgCode +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       colImgOpen +
+       imgPreviewCode +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "left" && imgWidth == "33") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col4ImgOpen +
+       imgCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col4ImgOpen +
+       imgPreviewCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "left" && imgWidth == "25") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col3ImgOpen +
+       imgCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col3ImgOpen +
+       imgPreviewCode +
+       divClose +
+       colTxtOpen +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "right" && imgWidth == "33") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       col4ImgOpen +
+       imgCode +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       col4ImgOpen +
+       imgPreviewCode +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "right" && imgWidth == "25") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       col3ImgOpen +
+       imgCode +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colTxtOpen +
+       tinyTextimg +
+       divClose +
+       col3ImgOpen +
+       imgPreviewCode +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "floatRight" && imgWidth == "50") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colFloatOpen +
+       imgFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colFloatOpen +
+       imgPreviewFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "floatRight" && imgWidth == "33") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col4FloatOpen +
+       imgFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col4FloatOpen +
+       imgPreviewFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "floatRight" && imgWidth == "25") {
+     imgOnlyOff();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col3FloatOpen +
+       imgFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       col3FloatOpen +
+       imgPreviewFloat +
+       divClose +
+       tinyTextimg +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "imgOnly") {
+     $("#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign").removeClass(
+       "show"
+     );
+     setTimeout(toggleImgOnlyOn, 300);
+     secondImageOff();
+     var finalCode = sComm + resizedHead + imgCode + eComm;
+     var previewCode = sComm + resizedHead + imgPreviewCode + eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   } else if (imgPosition == "imgSbS") {
+     $("#imgTinyMCE, #imgWidth, #imgImgAlign, #imgTextAlign").removeClass(
+       "show"
+     );
+     setTimeout(toggleImgOnlyOn, 300);
+     secondImageOn();
+     var finalCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colOpen +
+       imgCode +
+       divClose +
+       colOpen +
+       imgCode2 +
+       rowClose +
+       eComm;
+     var previewCode =
+       sComm +
+       resizedHead +
+       rowOpen +
+       colOpen +
+       imgPreviewCode +
+       divClose +
+       colOpen +
+       imgPreviewCode2 +
+       rowClose +
+       eComm;
+     $("#imgFinalCode").val(finalCode);
+     $("div#demo").html(previewCode);
+   }
+ }
 function generateVidTextCode() {
     //Retrive values and text from the user's input
     var vidPosition = $('input[name="videoPosition"]:checked').val();
@@ -993,7 +1304,7 @@ function makeTable(){
            "placeholder",
            "Heading on the accordion button. Max 125 characters"
          )
-         .on("change", generateAccCode);
+         .on("keyup", generateAccCode);
 
        // Create textarea for content
        let contentTextarea = $("<textarea>")
@@ -1003,14 +1314,16 @@ function makeTable(){
          .attr(
            "placeholder",
            "Content that will display on clicking the relative accordion button."
-         )
-         .on("change", generateAccCode);
+         );
 
        // Append elements to drawer div
        drawerDiv.append(hr, h6, headingTextarea, contentTextarea);
 
        // Append drawer div to container
        $("#drawerContainer").append(drawerDiv);
+
+       // Create a debounced version of generateAccCode
+       let generateAccCodeDebounced = debounce(generateAccCode, 250);
 
        // Initialize tinyMCE for the content textarea
        tinymce.init({
@@ -1031,6 +1344,9 @@ function makeTable(){
            tr: "width height",
            th: "width height",
            td: "width height",
+         },
+         setup: function (editor) {
+            editor.on("keyup", generateAccCodeDebounced);
          },
        });
      }
@@ -1125,59 +1441,40 @@ function makeTable(){
      }
    }
  }
+function generateReadmoreCode() {
+  const readmorePreBtnPlaceholder =
+    "<p>This is where the pre button text will appear.</p>\n";
+  const readmorePostBtnPlaceholder =
+    "<p>This is where the post button text will appear.</p>\n";
+  const readmoreHeadingText = $("#readmoreHeadingText").val();
+  const readmoreHeadSize = $('input[name="readmoreHeadSize"]:checked').val();
+  const readmoreName = $("#readmoreName").val();
+  const tinyReadmorePreBtn =
+    tinymce.get("tinyMCEreadmorePreBtn").getContent() ||
+    readmorePreBtnPlaceholder;
+  const tinyReadmorePostBtn =
+    tinymce.get("tinyMCEreadmorePostBtn").getContent() ||
+    readmorePostBtnPlaceholder;
+  const readmoreBtnOpen = `<p class="mt-2"><a class="btn btn-uq d-block mx-auto w-75 readmoreToggle" data-bs-toggle="collapse" href="#${readmoreName}" role="button" aria-expanded="false" aria-controls="${readmoreName}">Read more <i class="fa-solid fa-angle-down"></i></a></p>\n`;
+  const textAfterOpen = `<div class="collapse mt-2" id="${readmoreName}">\n`;
+  const textAfterClose = "</div>\n";
+  const iconToggleScript = `<script type="text/javascript">\n$('a[href="#${readmoreName}"]').click(function(){\n$('i', this).toggleClass('fa-angle-down fa-angle-up');});\n</script>\n`;
 
-function generateReadmoreCode(){
-    var readmorePreBtnPlaceholder = '<p>This is where the pre button text will appear.</p>\n';
-    var readmorePostBtnPlaceholder = '<p>This is where the post button text will appear.</p>\n';
-    var readmoreHeadingText = $('#readmoreHeadingText').val();
-    var readmoreHeadSize = $('input[name="readmoreHeadSize"]:checked').val();
-    var readmoreName = $('#readmoreName').val();
-    var tinyReadmorePreBtn = tinymce.get("tinyMCEreadmorePreBtn").getContent();
-    var readmoreBtnOpen = '<p class=\"mt-2\"><a class=\"btn btn-uq d-block mx-auto w-75 readmoreToggle\" data-bs-toggle=\"collapse\" href=\"#' + readmoreName + '\" role="button" aria-expanded="false" aria-controls=\"' + readmoreName + '\">Read more <i class=\"fa-solid fa-angle-down\"></i></a></p>\n';
-    var textAfterOpen = '<div class="collapse mt-2" id=\"' + readmoreName + '">\n';
-    var tinyReadmorePostBtn = tinymce.get("tinyMCEreadmorePostBtn").getContent();
-    var textAfterClose = '</div>\n';
-    var iconToggleScript = "<script type=\"text/javascript\">\n$('a[href=\"#" + readmoreName + "\"]').click(function(){\n$('i', this).toggleClass('fa-angle-down fa-angle-up');});\n</script>\n"
-    $('a[href="https://google.com"]');
-    $('#readmoreHeadingText').on('keyup', function() {
-        // Check if the textarea contains text
-        if ($(this).val().trim() !== '') {
-          // Set the radio button with value 'h2' to checked
-          $('input[type="radio"][value="readmore-h4"]').prop('checked', true);
-        }
-         else {
-          // Set the radio button with value 'noH' to checked
-          $('input[type="radio"][value="readmore-noH"]').prop('checked', true);
-        }
-      });
-    if(tinymce.get("tinyMCEreadmorePreBtn").getContent() != ""){
-        var tinyReadmorePreBtn = tinymce.get("tinyMCEreadmorePreBtn").getContent();
-    }
-    else{
-        var tinyReadmorePreBtn = readmorePreBtnPlaceholder
-    }
-    if(tinymce.get("tinyMCEreadmorePostBtn").getContent() != ""){
-        var tinyReadmorePostBtn = tinymce.get("tinyMCEreadmorePostBtn").getContent();
-    }
-    else{
-        var tinyReadmorePostBtn = readmorePostBtnPlaceholder
-    }
-    
-    if(readmoreHeadSize !== "readmore-noH"){
-        //Resizing the heading text
-        var readmoreHeadSizes = {
-            "readmore-noH": "",
-            "readmore-h2": "<h2 class=\"text-bg-uq p-2\">" + readmoreHeadingText + "</h2>\n",
-            "readmore-h4": "<h4 class=\"text-bg-info bg-opacity-25 p-2\">" + readmoreHeadingText + "</h4>\n"
-        }
-        readmoreResizedHead = readmoreHeadSizes[readmoreHeadSize];
-    }
-    else {
-        readmoreResizedHead = "";
-    }
-    var finalReadmoreCode = readmoreResizedHead + tinyReadmorePreBtn + textAfterOpen + tinyReadmorePostBtn + textAfterClose + readmoreBtnOpen + iconToggleScript;
-    $('#readmoreFinalCode').val(finalReadmoreCode);
-    $('div#demo').html(finalReadmoreCode);
+  $("#readmoreHeadingText").on("keyup", function () {
+    const value = $(this).val().trim() !== "" ? "readmore-h4" : "readmore-noH";
+    $('input[type="radio"][value="' + value + '"]').prop("checked", true);
+  });
+
+  const readmoreHeadSizes = {
+    "readmore-noH": "",
+    "readmore-h2": `<h2 class="text-bg-uq p-2">${readmoreHeadingText}</h2>\n`,
+    "readmore-h4": `<h4 class="text-bg-info bg-opacity-25 p-2">${readmoreHeadingText}</h4>\n`,
+  };
+  const readmoreResizedHead = readmoreHeadSizes[readmoreHeadSize] || "";
+
+  const finalReadmoreCode = `${readmoreResizedHead}${tinyReadmorePreBtn}${textAfterOpen}${tinyReadmorePostBtn}${textAfterClose}${readmoreBtnOpen}${iconToggleScript}`;
+  $("#readmoreFinalCode").val(finalReadmoreCode);
+  $("div#demo").html(finalReadmoreCode);
 }
 function copyCode() {
     var activeBtn = $('button.active').attr('id');

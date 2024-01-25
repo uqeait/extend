@@ -97,8 +97,28 @@
         <!--Setup tooltips + TinyMCE-->
         <script type="text/javascript">
             const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));                   
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+            function onKeyUp(ed) {
+                    activeBtn();
+                    var content = ed.getContent();
+                    console.log('onKeyUp function called. Contents: ' + content);
+                }                   
+            function debounce(func, delay) {
+                    let debounceTimer;
+                    return function () {
+                        const context = this;
+                        const args = arguments;
+                        clearTimeout(debounceTimer);
+                        console.log('Clearing debounce timer');
+                        debounceTimer = setTimeout(() => {
+                            console.log('Running debounced function'); 
+                            func.apply(context, args)
+                        }, delay);
+                    };
+                }
+                
             function initTinyMCE(selector, height, plugins, toolbar, onKeyUp) {
+                let onKeyUpDebounced = debounce(onKeyUp, 300);
                 tinymce.init({
                     selector: selector,
                     menubar: false,
@@ -122,10 +142,8 @@
                         args.content = tempDiv.innerHTML.replace('<table>', '<table class="table table-responsive table-hover table-bordered">');
                         },
                     setup: function (ed) {
-                        ed.on('keyup', function (e) {
-                            var tinyText = tinymce.get(selector).getContent();
-                            activeBtn();
-                            onKeyUp && onKeyUp(ed);
+                        ed.on('keyup', function (e) {                           
+                            onKeyUpDebounced(ed);
                             console.log('Editor contents was modified. Contents: ' + ed.
                             getContent());   
                         });
@@ -166,16 +184,16 @@
                     }
                 });
             }
-            initTinyMCE('#tinyMCEimg', "350", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEcaption', "200", ['link', 'anchor', 'code', 'insertdatetime', 'help'], commonToolbar);
-            initTinyMCE('#tinyMCEcaption2', "200", ['link', 'anchor', 'code', 'insertdatetime', 'help'], commonToolbar);
-            initTinyMCE('#tinyMCEvid', "350", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEalert', "350", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEcitation', "200", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEtable', "500", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEacc', "350", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEreadmorePreBtn', "200", commonPlugins, commonToolbar);
-            initTinyMCE('#tinyMCEreadmorePostBtn', "200", commonPlugins, commonToolbar);
+            initTinyMCE('#tinyMCEimg', "350", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEcaption', "200", ['link', 'anchor', 'code', 'insertdatetime', 'help'], commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEcaption2', "200", ['link', 'anchor', 'code', 'insertdatetime', 'help'], commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEvid', "350", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEalert', "350", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEcitation', "200", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEtable', "500", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEacc', "350", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEreadmorePreBtn', "200", commonPlugins, commonToolbar, onKeyUp);
+            initTinyMCE('#tinyMCEreadmorePostBtn', "200", commonPlugins, commonToolbar, onKeyUp);
 
             // ... repeat for other selectors     
             function activeBtn(){
@@ -206,50 +224,6 @@
                 }
             }
 
-        </script>
-        <!--Setup page variables-->
-        <script type="text/javascript">
-            //Variables required to construct code output
-            var rowOpen = '<div class="row">\n';
-            var colOpen = '<div class="col-lg">\n';
-            var col3Open = '<div class="col-lg-3">\n';
-            var col4Open = '<div class="col-lg-4">\n';
-            var colFloatOpen = '<div class="col-lg">\n<div class="col-lg-6 float-lg-end m-2">\n';
-            var col3FloatOpen = '<div class="col-lg">\n<div class="col-lg-3 float-lg-end m-2">\n';
-            var col4FloatOpen = '<div class="col-lg">\n<div class="col-lg-4 float-lg-end m-2">\n';
-            var respVidOpen = '<div class="ratio ratio-16x9">\n';
-            var pOpen = '<p>';  
-            var ctrBtn = ' d-block mx-auto';
-            var w25 = ' w-25';
-            var w50 = ' w-50';
-            var w75 = ' w-75';
-            var w100 = ' w-100';
-            var btnPlaceholder = '<a src="'   
-            var divClose = '</div>\n';
-            var rowClose = '</div>\n</div>\n';
-            var uqh2 = "text-bg-uq p-2";
-            var resizedHead = "";
-            var alertOpen = '<div class="alert alert-';
-            var alertDivClose = ' d-block mx-auto" role="alert">\n';
-            var quotationsLeft = '<span aria-hidden="true" class="fa fa-quote-left fa-2x"></span>\n';
-            var figOpen = '<figure class="mb-0">\n<blockquote class="blockquote mb-0">';
-            var quoteWrapper = '<div class="'
-            var endQuoteWrapper = '</div>'
-            var closeWrapper = '">'
-            var figCaptionOpen = '<figcaption class="blockquote-footer mb-0 mt-4 text-end fs-6">';
-            var figCaptionClose = '\n</figcaption>\n</blockquote>\n</figure>';
-            var quotationsRight = '<p class="mb-4"><span aria-hidden="true" class="fa fa-quote-right fa-pull-right fa-2x"></span></p>\n</div>'
-            var vidResizedHead = "";
-            //Placeholder variables so there is a placeholder preview for the user to see initially
-            var textPlaceholder = '<p class="mb-0">This is placeholder text that will update once you input your own text</p>\n';
-            var imgPlaceholder = '<figure>\n<img class="img-fluid d-block mx-auto" alt="This is alt text" src="https://uqeait.github.io/uqextend/img/PLACEHOLDER.png" />\n<figcaption class="text-center mt-2">This is the placeholder image caption</figcaption>\n</figure>\n';
-            var imgPlaceholderLink = 'https://uqeait.github.io/uqextend/img/PLACEHOLDER.png';
-            var placeholderCode = rowOpen + colOpen + textPlaceholder + divClose + colOpen + imgPlaceholder + rowClose;
-            var vidPlaceholder = '<iframe src="https://www.youtube.com/embed/NpEaa2P7qZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-            var vidPlaceholderLink = 'https://www.youtube.com/embed/NpEaa2P7qZI';
-            var vidPlaceholderCode = rowOpen + colOpen + textPlaceholder + divClose + colOpen + respVidOpen + vidPlaceholder + rowClose;
-            var btnPlaceholderLink = 'https://extend.uq.edu.au/dashboard';
-            var tooltipPlaceholderText = 'This is a tooltip to help people better understand a term, or provide a reminder of what an acronym stands for.';
         </script>
         <!--On page load run functions + build placeholder-->
         <script type="text/javascript">
@@ -776,7 +750,7 @@
                                 <hr>
                                 <div id="vidStep3">
                                 <h5 class="font-weight-bold mt-3">Heading - Max 75 Characters<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Optional heading above content. Max 75 characters" class="hideableinstruct text-success small">&nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></span></h5>
-                                <textarea onchange="generateVidTextCode()" id="vidHeadingText" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Optional heading above content. Max 75 characters"></textarea>
+                                <textarea onkeyup="generateVidTextCode()" id="vidHeadingText" maxlength="75" class="border border-dark rounded w-100 p-2" rows="1" placeholder="Optional heading above content. Max 75 characters"></textarea>
                             </div>
                                 <hr>
                                 <div id="vidStep5">
