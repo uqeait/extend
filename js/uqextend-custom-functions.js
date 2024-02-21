@@ -6,6 +6,17 @@ window.addEventListener("load", function () {
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
+  //Add a button to open an offcanvas menu with links to other important sites.
+  $("body").append(
+    '<button class="btn btn-dark mr-3 mt-3 position-fixed top-0 end-0" style="box-shadow: none;" type="button" data-bs-toggle="offcanvas" data-bs-target="#supportMenu" aria-controls="supportMenu">Support Links</button><div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="supportMenu" aria-labelledby="supportMenu"><div class="offcanvas-header text-bg-uq"><h4 class="text-bg-uq offcanvas-title mb-1" id="offcanvasWithBothOptionsLabel">Support Links Menu</h4><button type="button" style="box-shadow: none;" class="btn btn-uq text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><span class="fa fa-close"></span></button></div><div class="offcanvas-body"><ul class="lh-lg list-unstyled" id="supportLinksList"><li><a class="text-decoration-none" href="https://web.library.uq.edu.au/contact-us" title="UQ AskUs" target="_blank" rel="noopener">AskUs Website</a></li><li><a class="text-decoration-none" href="https://learn.uq.edu.au/" title="Learn.UQ" target="_blank" rel="noopener">Learn.UQ Dashboard</a></li><li><a class="text-decoration-none" href="https://edstem.org/au/dashboard" title="ED Discussion Dashboard" target="_blank" rel="noopener">ED Discussion Dashboard</a></li></ul></div></div>'
+  );
+  //if the site is ENGG1100 append additional links to the support menu
+   const courseCodeTitle = [ 
+  "[ENGG1100] Professional Engineering (St Lucia). Semester 1, 2024"
+];
+if (courseCodeTitle.includes($('span.course-name').text())){
+  $("div#supportMenu ul").append('<li><a class="text-decoration-none" href="https://uqeait.github.io/learnuq/engg1100faqs.html" target="_blank" title="ENGG1100 FAQs Website" rel="noopener">ENGG1100 FAQs Website</a></li>');
+}
   //Add a go to bookmarks link next to the bookmark this page link
   var currentLocation = window.location.href;
   var bookmarkSlice = currentLocation.slice(32, 65);
