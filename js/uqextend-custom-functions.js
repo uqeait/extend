@@ -22,13 +22,12 @@ if (engg1100.includes($('span.course-name').text())){
 }
 if (civl2135.includes($("span.course-name").text())) {
    $("body").append(
-     '<p class="d-block mx-auto w-50"><a id="echo360Enrol" class="btn btn-success btn-lg mt-5 position-fixed w-50 d-block mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to enrol in the Echo360 Collection which should resolve your access issues" style="top: 75px;" href="https://echo360.net.au/collection/09ae5e72-079e-4516-abbb-39acfc20be4e/public" target="_blank" title="Enrol in CIVL2135 Echo360 Collection" onclick=buttonClicked()>Enrol in Echo360 Collection</a>'
+     '<p class="d-block mx-auto w-50"><a id="echo360Enrol" class="btn btn-success btn-lg mt-5 position-fixed w-50 d-block mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to enrol in the Echo360 Collection which should resolve your access issues" style="top: 75px;" href="https://echo360.net.au/collection/09ae5e72-079e-4516-abbb-39acfc20be4e/public" target="_blank" title="Enrol in CIVL2135 Echo360 Collection">Enrol in Echo360 Collection</a>'
    );
-   function buttonClicked() {
+   $('#echo360Enrol').on('click', function () {
      localStorage.setItem("echo360Enrolled", "true"); // Store that the button was clicked
      document.getElementById("echo360Enrol").remove(); // Remove the button
-   }
-
+     })
    // On page load, check if the button was already clicked
    window.addEventListener("load", () => {
      if (localStorage.getItem("echo360Enrolled") === "true") {
@@ -41,7 +40,10 @@ if (civl2135.includes($("span.course-name").text())) {
        // If not clicked, attach the click event listener
        document
          .getElementById("echo360Enrol")
-         .addEventListener("click", buttonClicked);
+         .addEventListener("click", function () {
+     localStorage.setItem("echo360Enrolled", "true"); // Store that the button was clicked
+     document.getElementById("echo360Enrol").remove(); // Remove the button
+     });
      }
    });
 }
