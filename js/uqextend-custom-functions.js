@@ -28,8 +28,7 @@ if (civl2135.includes($("span.course-name").text())) {
      localStorage.setItem("echo360Enrolled", "true"); // Store that the button was clicked
      document.getElementById("echo360Enrol").remove(); // Remove the button
      })
-   // On page load, check if the button was already clicked
-   window.addEventListener("load", () => {
+   // Check if the button was already clicked
      if (localStorage.getItem("echo360Enrolled") === "true") {
        // If clicked, remove the button (if it hasn't already been removed)
        let enrolled = document.getElementById("echo360Enrol");
@@ -45,7 +44,6 @@ if (civl2135.includes($("span.course-name").text())) {
      document.getElementById("echo360Enrol").remove(); // Remove the button
      });
      }
-   });
 }
   //Add a go to bookmarks link next to the bookmark this page link
   var currentLocation = window.location.href;
