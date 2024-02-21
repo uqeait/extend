@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
    const engg1100 = [
      "[ENGG1100] Professional Engineering (St Lucia). Semester 1, 2024",
    ];
-if (engg110.includes($('span.course-name').text())){
+if (engg1100.includes($('span.course-name').text())){
   $("div#supportMenu ul").append('<li><a class="text-decoration-none" href="https://uqeait.github.io/learnuq/engg1100faqs.html" target="_blank" title="ENGG1100 FAQs Website" rel="noopener">ENGG1100 FAQs Website</a></li>');
 }
 if (civl2135.includes($("span.course-name").text())) {
