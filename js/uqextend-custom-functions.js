@@ -11,11 +11,39 @@ window.addEventListener("load", function () {
     '<button class="btn btn-dark mr-3 mt-3 position-fixed top-0 end-0" style="box-shadow: none;" type="button" data-bs-toggle="offcanvas" data-bs-target="#supportMenu" aria-controls="supportMenu">Support Links</button><div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="supportMenu" aria-labelledby="supportMenu"><div class="offcanvas-header text-bg-uq"><h4 class="text-bg-uq offcanvas-title mb-1" id="offcanvasWithBothOptionsLabel">Support Links Menu</h4><button type="button" style="box-shadow: none;" class="btn btn-uq text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><span class="fa fa-close"></span></button></div><div class="offcanvas-body"><ul class="lh-lg list-unstyled" id="supportLinksList"><li><a class="text-decoration-none" href="https://web.library.uq.edu.au/contact-us" title="UQ AskUs" target="_blank" rel="noopener">AskUs Website</a></li><li><a class="text-decoration-none" href="https://learn.uq.edu.au/" title="Learn.UQ" target="_blank" rel="noopener">Learn.UQ Dashboard</a></li><li><a class="text-decoration-none" href="https://edstem.org/au/dashboard" title="ED Discussion Dashboard" target="_blank" rel="noopener">ED Discussion Dashboard</a></li></ul></div></div>'
   );
   //if the site is ENGG1100 append additional links to the support menu
-   const courseCodeTitle = [ 
-  "[ENGG1100] Professional Engineering (St Lucia). Semester 1, 2024"
-];
-if (courseCodeTitle.includes($('span.course-name').text())){
+   const civl2135 = [ 
+     "[CIVL2135] Introduction to Environmental Engineering (St Lucia). Semester 1, 2024",
+   ];
+   const engg1100 = [
+     "[ENGG1100] Professional Engineering (St Lucia). Semester 1, 2024",
+   ];
+if (engg110.includes($('span.course-name').text())){
   $("div#supportMenu ul").append('<li><a class="text-decoration-none" href="https://uqeait.github.io/learnuq/engg1100faqs.html" target="_blank" title="ENGG1100 FAQs Website" rel="noopener">ENGG1100 FAQs Website</a></li>');
+}
+if (civl2135.includes($("span.course-name").text())) {
+   $("body").append(
+     '<p class="d-block mx-auto w-50"><a id="echo360Enrol" class="btn btn-success btn-lg mt-5 position-fixed w-50 d-block mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to enrol in the Echo360 Collection which should resolve your access issues" style="top: 75px;" href="https://echo360.net.au/collection/09ae5e72-079e-4516-abbb-39acfc20be4e/public" target="_blank" title="Enrol in CIVL2135 Echo360 Collection" onclick=buttonClicked()>Enrol in Echo360 Collection</a>'
+   );
+   function buttonClicked() {
+     localStorage.setItem("echo360Enrolled", "true"); // Store that the button was clicked
+     document.getElementById("echo360Enrol").remove(); // Remove the button
+   }
+
+   // On page load, check if the button was already clicked
+   window.addEventListener("load", () => {
+     if (localStorage.getItem("echo360Enrolled") === "true") {
+       // If clicked, remove the button (if it hasn't already been removed)
+       let enrolled = document.getElementById("echo360Enrol");
+       if (enrolled) {
+         enrolled.remove();
+       }
+     } else {
+       // If not clicked, attach the click event listener
+       document
+         .getElementById("echo360Enrol")
+         .addEventListener("click", buttonClicked);
+     }
+   });
 }
   //Add a go to bookmarks link next to the bookmark this page link
   var currentLocation = window.location.href;
