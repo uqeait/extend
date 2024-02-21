@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
 if (engg1100.includes($('span.course-name').text())){
   $("div#supportMenu ul").append('<li><a class="text-decoration-none" href="https://uqeait.github.io/learnuq/engg1100faqs.html" target="_blank" title="ENGG1100 FAQs Website" rel="noopener">ENGG1100 FAQs Website</a></li>');
 }
-if (civl2135.includes($("span.course-name").text())) {
+/*if (civl2135.includes($("span.course-name").text())) {
    $("body").append(
      '<p class="d-block mx-auto w-50"><a id="echo360Enrol" class="btn btn-success btn-lg mt-5 position-fixed w-50 d-block mx-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to enrol in the Echo360 Collection which should resolve your access issues" style="top: 75px;" href="https://echo360.net.au/collection/09ae5e72-079e-4516-abbb-39acfc20be4e/public" target="_blank" title="Enrol in CIVL2135 Echo360 Collection">Enrol in Echo360 Collection</a>'
    );
@@ -44,7 +44,7 @@ if (civl2135.includes($("span.course-name").text())) {
      document.getElementById("echo360Enrol").remove(); // Remove the button
      });
      }
-}
+}*/
   //Add a go to bookmarks link next to the bookmark this page link
   var currentLocation = window.location.href;
   var bookmarkSlice = currentLocation.slice(32, 65);
