@@ -153,6 +153,9 @@ if (engg1100.includes($('span.course-name').text())){
   window.onscroll = function () {
     scrollFunction();
   };
+  // Change 'Show Answer' to 'Show Answer and Feedback' on questions
+  $('.show-label').text('Show answer and feedback')
+  $('.show-label').addClass('text-wrap')
 
   function scrollFunction() {
     if (
