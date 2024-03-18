@@ -10,6 +10,9 @@ color: var(--bs-alert-color) !important;
 margin-bottom: var(--bs-alert-margin-bottom) !important;  
 }
 
+.mb-6{
+  margin-bottom: 6rem;
+}
 .xmodule_display.xmodule_HtmlBlock .table th{
  background: var(--bs-table-bg) !important;
 }
