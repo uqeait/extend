@@ -1373,11 +1373,11 @@ function makeTable(){
    const createDrawer = (index, title, content, isOpen = false) => {
      const openClass = index === 1 && isOpen ? showHideFirst : "";
      return `<div class="accordion-item">
-    <h2 class="accordion-header" id="heading${index}">
+    <div class="accordion-header" id="heading${index}">
         <button class="accordion-button${openClass === "" ? " collapsed" : ""}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 1 ? "true" : "false"}" aria-controls="collapse${index}">
     ${title}
 </button>
-    </h2>
+    </div>
     <div id="collapse${index}" class="accordion-collapse collapse${openClass}" aria-labelledby="heading${index}" data-bs-parent="#accordion${accName}">
         <div class="accordion-body">${content}</div>
     </div>
@@ -1398,7 +1398,7 @@ function makeTable(){
    $("div#demo").html(sComm + accResizedHead + accCode + "\n" + eComm);
 
    // Accordion click event
-   $("h2.accordion-header").on("click", function () {
+   $("div.accordion-header").on("click", function () {
      $("div.accordion-collapse").removeClass("show");
    });
 
