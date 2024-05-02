@@ -1367,18 +1367,18 @@ function makeTable(){
    };
    const accResizedHead = accHeadSizes[accHeadSize] || "";
 
-   let accCode = `<div class="accordion" id="accordion${accName}">\n`;
+   let accCode = `<div class="accordion" id="acc${accName}">\n`;
 
    // Function to generate accordion drawer
    const createDrawer = (index, title, content, isOpen = false) => {
      const openClass = index === 1 && isOpen ? showHideFirst : "";
      return `<div class="accordion-item">
-    <div class="accordion-header" id="heading${index}">
-        <button class="accordion-button${openClass === "" ? " collapsed" : ""}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${index === 1 ? "true" : "false"}" aria-controls="collapse${index}">
+    <div class="accordion-header" id="${accName}heading${index}">
+        <button class="accordion-button${openClass === "" ? " collapsed" : ""}" type="button" data-bs-toggle="collapse" data-bs-target="#${accName}${index}" aria-expanded="${index === 1 ? "true" : "false"}" aria-controls="${accName}${index}">
     ${title}
 </button>
     </div>
-    <div id="collapse${index}" class="accordion-collapse collapse${openClass}" aria-labelledby="heading${index}" data-bs-parent="#accordion${accName}">
+    <div id="${accName}${index}" class="accordion-collapse collapse${openClass}" aria-labelledby="${accName}heading${index}" data-bs-parent="#acc${accName}">
         <div class="accordion-body">${content}</div>
     </div>
 </div>\n`;
