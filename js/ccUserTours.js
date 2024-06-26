@@ -198,7 +198,7 @@ const finalBtn = [
 //add the above steps to the tour
   imgBuilderTour.addSteps(imgBuilderSteps);
 //set the image builder tour completion key to false
-localStorage.setItem(imgBuilderTourCompletionKey, 'false');
+//localStorage.setItem(imgBuilderTourCompletionKey, 'false');
 //start tour if the key isn't switched to true
     document.getElementById('imgBuilderBtn').addEventListener('click', function() {
     if (localStorage.getItem(imgBuilderTourCompletionKey) !== 'true') {
@@ -321,7 +321,7 @@ const vidBuilderSteps = [
 vidBuilderTour.addSteps(vidBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(vidBuilderTourCompletionKey, 'false');
+//localStorage.setItem(vidBuilderTourCompletionKey, 'false');
 
 document.getElementById('vidBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(vidBuilderTourCompletionKey) !== 'true') {
@@ -455,7 +455,7 @@ var btnBuilderTour = new Shepherd.Tour({
 btnBuilderTour.addSteps(btnBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(btnBuilderTourCompletionKey, 'false');
+//localStorage.setItem(btnBuilderTourCompletionKey, 'false');
 
 document.getElementById('btnBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(btnBuilderTourCompletionKey) !== 'true') {
@@ -589,7 +589,7 @@ var alertBuilderTour = new Shepherd.Tour({
 alertBuilderTour.addSteps(alertBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(alertBuilderTourCompletionKey, 'false');
+//localStorage.setItem(alertBuilderTourCompletionKey, 'false');
 
 document.getElementById('alertBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(alertBuilderTourCompletionKey) !== 'true') {
@@ -674,7 +674,7 @@ var tooltipBuilderTour = new Shepherd.Tour({
 tooltipBuilderTour.addSteps(tooltipBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(tooltipBuilderTourCompletionKey, 'false');
+//localStorage.setItem(tooltipBuilderTourCompletionKey, 'false');
 
 document.getElementById('tooltipBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(tooltipBuilderTourCompletionKey) !== 'true') {
@@ -773,7 +773,7 @@ var tableBuilderTour = new Shepherd.Tour({
 tableBuilderTour.addSteps(tableBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(tableBuilderTourCompletionKey, 'false');
+//localStorage.setItem(tableBuilderTourCompletionKey, 'false');
 
 document.getElementById('tableBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(tableBuilderTourCompletionKey) !== 'true') {
@@ -879,7 +879,7 @@ var accBuilderTour = new Shepherd.Tour({
 accBuilderTour.addSteps(accBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(accBuilderTourCompletionKey, 'false');
+//localStorage.setItem(accBuilderTourCompletionKey, 'false');
 
 document.getElementById('accBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(accBuilderTourCompletionKey) !== 'true') {
@@ -978,7 +978,7 @@ var readmoreBuilderTour = new Shepherd.Tour({
 readmoreBuilderTour.addSteps(readmoreBuilderSteps);
 
 //Set the local storage key for the video builder tour to false
-localStorage.setItem(readmoreBuilderTourCompletionKey, 'false');
+//localStorage.setItem(readmoreBuilderTourCompletionKey, 'false');
 
 document.getElementById('readmoreBuilderBtn').addEventListener('click', function() {
   if (localStorage.getItem(readmoreBuilderTourCompletionKey) !== 'true') {
