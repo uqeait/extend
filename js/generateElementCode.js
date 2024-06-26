@@ -1035,7 +1035,7 @@ function generateAlertCode() {
     }
     
     var alertHeadingText = $('#alertHeadingText').val()
-    if($(alertHeadingText) !== ''){
+    if(alertHeadingText !== ''){
         alertHeadingText = alertHeadingText
     }
     else{
